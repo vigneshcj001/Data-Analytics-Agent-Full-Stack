@@ -1,0 +1,1842 @@
+2025-09-19 00:02:30 [INFO] Question: Show the average salary grouped by experience level as a bar chart
+2025-09-19 00:02:32 [INFO] Running PandasAI with langchain_groq-chat LLM...
+2025-09-19 00:02:32 [INFO] Prompt ID: 1a0d2120-9b74-436d-9ae2-b4a8a938bfb3
+2025-09-19 00:02:32 [INFO] Executing Pipeline: GenerateChatPipeline
+2025-09-19 00:02:32 [INFO] Executing Step 0: ValidatePipelineInput
+2025-09-19 00:02:32 [INFO] Executing Step 1: CacheLookup
+2025-09-19 00:02:32 [INFO] Executing Step 2: PromptGeneration
+2025-09-19 00:02:33 [INFO] Using prompt: <dataframe>
+dfs[0]:15000x19
+job_id,job_title,salary_usd,salary_currency,experience_level,employment_type,company_location,company_size,employee_residence,remote_ratio,required_skills,education_required,years_experience,industry,posting_date,application_deadline,job_description_length,benefits_score,company_name
+AI07540,Principal Data Scientist,179466,USD,SE,FL,United States,L,Japan,100,"AWS, Tableau, Kubernetes",Associate,10,Media,2025-02-12,2024-06-28,2440,8.3,Future Systems
+AI02879,Data Engineer,68074,GBP,EN,FT,South Korea,S,Austria,50,"Linux, Mathematics, Kubernetes",Master,8,Energy,2025-02-22,2025-04-08,1203,6.6,Advanced Robotics
+AI04472,AI Software Engineer,107194,EUR,MI,PT,India,M,Sweden,0,"Data Visualization, Computer Vision, Docker, NLP",Bachelor,9,Real Estate,2024-08-13,2025-04-20,1874,9.6,Smart Analytics
+</dataframe>
+
+
+
+
+Update this initial code:
+```python
+# TODO: import the required dependencies
+import pandas as pd
+
+# Write code here
+
+# Declare result var: 
+type (possible values "string", "number", "dataframe", "plot"). Examples: { "type": "string", "value": f"The highest salary is {highest_salary}." } or { "type": "number", "value": 125 } or { "type": "dataframe", "value": pd.DataFrame({...}) } or { "type": "plot", "value": "temp_chart.png" }
+
+```
+
+
+
+### QUERY
+ Show the average salary grouped by experience level as a bar chart
+
+Variable `dfs: list[pd.DataFrame]` is already declared.
+
+At the end, declare "result" variable as a dictionary of type and value.
+
+If you are asked to plot a chart, use "matplotlib" for charts, save as png.
+
+
+Generate python code and return full updated code:
+2025-09-19 00:02:33 [INFO] Executing Step 3: CodeGenerator
+2025-09-19 00:02:35 [INFO] HTTP Request: POST https://api.groq.com/openai/v1/chat/completions "HTTP/1.1 200 OK"
+2025-09-19 00:02:35 [INFO] Prompt used:
+            
+<dataframe>
+dfs[0]:15000x19
+job_id,job_title,salary_usd,salary_currency,experience_level,employment_type,company_location,company_size,employee_residence,remote_ratio,required_skills,education_required,years_experience,industry,posting_date,application_deadline,job_description_length,benefits_score,company_name
+AI07540,Principal Data Scientist,179466,USD,SE,FL,United States,L,Japan,100,"AWS, Tableau, Kubernetes",Associate,10,Media,2025-02-12,2024-06-28,2440,8.3,Future Systems
+AI02879,Data Engineer,68074,GBP,EN,FT,South Korea,S,Austria,50,"Linux, Mathematics, Kubernetes",Master,8,Energy,2025-02-22,2025-04-08,1203,6.6,Advanced Robotics
+AI04472,AI Software Engineer,107194,EUR,MI,PT,India,M,Sweden,0,"Data Visualization, Computer Vision, Docker, NLP",Bachelor,9,Real Estate,2024-08-13,2025-04-20,1874,9.6,Smart Analytics
+</dataframe>
+
+
+
+
+Update this initial code:
+```python
+# TODO: import the required dependencies
+import pandas as pd
+
+# Write code here
+
+# Declare result var: 
+type (possible values "string", "number", "dataframe", "plot"). Examples: { "type": "string", "value": f"The highest salary is {highest_salary}." } or { "type": "number", "value": 125 } or { "type": "dataframe", "value": pd.DataFrame({...}) } or { "type": "plot", "value": "temp_chart.png" }
+
+```
+
+
+
+### QUERY
+ Show the average salary grouped by experience level as a bar chart
+
+Variable `dfs: list[pd.DataFrame]` is already declared.
+
+At the end, declare "result" variable as a dictionary of type and value.
+
+If you are asked to plot a chart, use "matplotlib" for charts, save as png.
+
+
+Generate python code and return full updated code:
+            
+2025-09-19 00:02:35 [INFO] Code generated:
+            ```
+            # Import required dependencies
+import pandas as pd
+import matplotlib.pyplot as plt
+
+# Process the first dataframe
+df = dfs[0]
+
+# Calculate average salary by experience level
+average_salary = df.groupby('experience_level')['salary_usd'].mean().reset_index()
+
+# Create bar chart
+plt.figure(figsize=(10, 6))
+plt.bar(average_salary['experience_level'], average_salary['salary_usd'], color='skyblue')
+plt.xlabel('Experience Level')
+plt.ylabel('Average Salary (USD)')
+plt.title('Average Salary by Experience Level')
+plt.tight_layout()
+
+# Save as PNG
+plt.savefig('temp_chart.png')
+plt.close()
+
+# Declare result
+result = {"type": "plot", "value": "temp_chart.png"}
+            ```
+            
+2025-09-19 00:02:35 [INFO] Executing Step 4: CachePopulation
+2025-09-19 00:02:35 [INFO] Executing Step 5: CodeCleaning
+2025-09-19 00:02:35 [INFO] Saving charts to D:\Agents_Full_stack\Agents_backend\exports\charts\temp_chart.png
+2025-09-19 00:02:36 [INFO] 
+Code running:
+```
+df = dfs[0]
+average_salary = df.groupby('experience_level')['salary_usd'].mean().reset_index()
+plt.figure(figsize=(10, 6))
+plt.bar(average_salary['experience_level'], average_salary['salary_usd'], color='skyblue')
+plt.xlabel('Experience Level')
+plt.ylabel('Average Salary (USD)')
+plt.title('Average Salary by Experience Level')
+plt.tight_layout()
+plt.savefig('D:/Agents_Full_stack/Agents_backend/exports/charts/temp_chart.png')
+plt.close()
+result = {'type': 'plot', 'value': 'D:/Agents_Full_stack/Agents_backend/exports/charts/temp_chart.png'}
+        ```
+2025-09-19 00:02:36 [INFO] Executing Step 6: CodeExecution
+2025-09-19 00:02:37 [INFO] Executing Step 7: ResultValidation
+2025-09-19 00:02:37 [INFO] Answer: {'type': 'plot', 'value': 'D:/Agents_Full_stack/Agents_backend/exports/charts/temp_chart.png'}
+2025-09-19 00:02:37 [INFO] Executing Step 8: ResultParsing
+2025-09-19 00:08:23 [INFO] Question: Hi
+2025-09-19 00:08:24 [INFO] Running PandasAI with langchain_groq-chat LLM...
+2025-09-19 00:08:25 [INFO] Prompt ID: d97fcd8e-424c-4657-82c5-8a7101fe73cc
+2025-09-19 00:08:25 [INFO] Executing Pipeline: GenerateChatPipeline
+2025-09-19 00:08:25 [INFO] Executing Step 0: ValidatePipelineInput
+2025-09-19 00:08:25 [INFO] Executing Step 1: CacheLookup
+2025-09-19 00:08:25 [INFO] Executing Step 2: PromptGeneration
+2025-09-19 00:08:25 [INFO] Using prompt: <dataframe>
+dfs[0]:15000x19
+job_id,job_title,salary_usd,salary_currency,experience_level,employment_type,company_location,company_size,employee_residence,remote_ratio,required_skills,education_required,years_experience,industry,posting_date,application_deadline,job_description_length,benefits_score,company_name
+AI02766,AI Product Manager,53026,EUR,MI,FT,Switzerland,M,India,0,"AWS, Python, Azure, Scala",Associate,5,Technology,2024-03-06,2025-01-15,1042,7.1,Autonomous Tech
+AI05010,NLP Engineer,84398,GBP,EN,FL,Denmark,L,France,100,"Computer Vision, Mathematics, SQL",Master,1,Government,2024-12-07,2024-02-09,1297,5.3,Future Systems
+AI00434,Data Scientist,59492,USD,SE,CT,Austria,S,Israel,50,"GCP, Java, Scala",PhD,4,Healthcare,2024-05-23,2024-04-21,1771,6.4,Smart Analytics
+</dataframe>
+
+
+
+
+Update this initial code:
+```python
+# TODO: import the required dependencies
+import pandas as pd
+
+# Write code here
+
+# Declare result var: 
+type (possible values "string", "number", "dataframe", "plot"). Examples: { "type": "string", "value": f"The highest salary is {highest_salary}." } or { "type": "number", "value": 125 } or { "type": "dataframe", "value": pd.DataFrame({...}) } or { "type": "plot", "value": "temp_chart.png" }
+
+```
+
+
+
+### QUERY
+ Hi
+
+Variable `dfs: list[pd.DataFrame]` is already declared.
+
+At the end, declare "result" variable as a dictionary of type and value.
+
+If you are asked to plot a chart, use "matplotlib" for charts, save as png.
+
+
+Generate python code and return full updated code:
+2025-09-19 00:08:25 [INFO] Executing Step 3: CodeGenerator
+2025-09-19 00:08:29 [INFO] HTTP Request: POST https://api.groq.com/openai/v1/chat/completions "HTTP/1.1 200 OK"
+2025-09-19 00:08:29 [INFO] Prompt used:
+            
+<dataframe>
+dfs[0]:15000x19
+job_id,job_title,salary_usd,salary_currency,experience_level,employment_type,company_location,company_size,employee_residence,remote_ratio,required_skills,education_required,years_experience,industry,posting_date,application_deadline,job_description_length,benefits_score,company_name
+AI02766,AI Product Manager,53026,EUR,MI,FT,Switzerland,M,India,0,"AWS, Python, Azure, Scala",Associate,5,Technology,2024-03-06,2025-01-15,1042,7.1,Autonomous Tech
+AI05010,NLP Engineer,84398,GBP,EN,FL,Denmark,L,France,100,"Computer Vision, Mathematics, SQL",Master,1,Government,2024-12-07,2024-02-09,1297,5.3,Future Systems
+AI00434,Data Scientist,59492,USD,SE,CT,Austria,S,Israel,50,"GCP, Java, Scala",PhD,4,Healthcare,2024-05-23,2024-04-21,1771,6.4,Smart Analytics
+</dataframe>
+
+
+
+
+Update this initial code:
+```python
+# TODO: import the required dependencies
+import pandas as pd
+
+# Write code here
+
+# Declare result var: 
+type (possible values "string", "number", "dataframe", "plot"). Examples: { "type": "string", "value": f"The highest salary is {highest_salary}." } or { "type": "number", "value": 125 } or { "type": "dataframe", "value": pd.DataFrame({...}) } or { "type": "plot", "value": "temp_chart.png" }
+
+```
+
+
+
+### QUERY
+ Hi
+
+Variable `dfs: list[pd.DataFrame]` is already declared.
+
+At the end, declare "result" variable as a dictionary of type and value.
+
+If you are asked to plot a chart, use "matplotlib" for charts, save as png.
+
+
+Generate python code and return full updated code:
+            
+2025-09-19 00:08:29 [INFO] Code generated:
+            ```
+            # TODO: import the required dependencies
+import pandas as pd
+
+# Write code here
+df = pd.concat(dfs, ignore_index=True)
+max_salary = df['salary_usd'].max()
+result = {"type": "string", "value": f"The highest salary is {max_salary}."}
+
+# Declare result var:
+            ```
+            
+2025-09-19 00:08:29 [INFO] Executing Step 4: CachePopulation
+2025-09-19 00:08:29 [INFO] Executing Step 5: CodeCleaning
+2025-09-19 00:08:29 [INFO] 
+Code running:
+```
+df = pd.concat(dfs, ignore_index=True)
+max_salary = df['salary_usd'].max()
+result = {'type': 'string', 'value': f'The highest salary is {max_salary}.'}
+        ```
+2025-09-19 00:08:29 [INFO] Executing Step 6: CodeExecution
+2025-09-19 00:08:29 [INFO] Executing Step 7: ResultValidation
+2025-09-19 00:08:29 [INFO] Answer: {'type': 'string', 'value': 'The highest salary is 399095.'}
+2025-09-19 00:08:29 [INFO] Executing Step 8: ResultParsing
+2025-09-19 00:09:32 [INFO] Question: find the job requirements: job title must be Data Engineer, Remote job for years_experience is 0
+2025-09-19 00:09:32 [INFO] Running PandasAI with langchain_groq-chat LLM...
+2025-09-19 00:09:32 [INFO] Prompt ID: eb761155-3d5f-466f-b4a8-b2c57377fefc
+2025-09-19 00:09:32 [INFO] Executing Pipeline: GenerateChatPipeline
+2025-09-19 00:09:32 [INFO] Executing Step 0: ValidatePipelineInput
+2025-09-19 00:09:32 [INFO] Executing Step 1: CacheLookup
+2025-09-19 00:09:32 [INFO] Executing Step 2: PromptGeneration
+2025-09-19 00:09:32 [INFO] Using prompt: <dataframe>
+dfs[0]:15000x19
+job_id,job_title,salary_usd,salary_currency,experience_level,employment_type,company_location,company_size,employee_residence,remote_ratio,required_skills,education_required,years_experience,industry,posting_date,application_deadline,job_description_length,benefits_score,company_name
+AI07277,Research Scientist,38584,EUR,SE,PT,Singapore,M,Denmark,100,"Data Visualization, PyTorch, Statistics",Bachelor,16,Government,2024-03-09,2024-05-13,1080,5.1,DeepTech Ventures
+AI04829,AI Architect,80147,USD,MI,CT,France,S,Germany,0,"Spark, Git, NLP, TensorFlow, R",Associate,10,Manufacturing,2025-01-22,2025-06-27,1270,5.3,Machine Intelligence Group
+AI10353,AI Specialist,167899,GBP,EN,FL,Switzerland,L,China,50,"Git, Spark, Statistics, MLOps, Mathematics",Master,5,Gaming,2024-04-27,2025-01-30,569,6.1,Cloud AI Solutions
+</dataframe>
+
+
+
+
+Update this initial code:
+```python
+# TODO: import the required dependencies
+import pandas as pd
+
+# Write code here
+
+# Declare result var: 
+type (possible values "string", "number", "dataframe", "plot"). Examples: { "type": "string", "value": f"The highest salary is {highest_salary}." } or { "type": "number", "value": 125 } or { "type": "dataframe", "value": pd.DataFrame({...}) } or { "type": "plot", "value": "temp_chart.png" }
+
+```
+
+
+
+### QUERY
+ find the job requirements: job title must be Data Engineer, Remote job for years_experience is 0
+
+Variable `dfs: list[pd.DataFrame]` is already declared.
+
+At the end, declare "result" variable as a dictionary of type and value.
+
+If you are asked to plot a chart, use "matplotlib" for charts, save as png.
+
+
+Generate python code and return full updated code:
+2025-09-19 00:09:32 [INFO] Executing Step 3: CodeGenerator
+2025-09-19 00:09:35 [INFO] HTTP Request: POST https://api.groq.com/openai/v1/chat/completions "HTTP/1.1 200 OK"
+2025-09-19 00:09:35 [INFO] Prompt used:
+            
+<dataframe>
+dfs[0]:15000x19
+job_id,job_title,salary_usd,salary_currency,experience_level,employment_type,company_location,company_size,employee_residence,remote_ratio,required_skills,education_required,years_experience,industry,posting_date,application_deadline,job_description_length,benefits_score,company_name
+AI07277,Research Scientist,38584,EUR,SE,PT,Singapore,M,Denmark,100,"Data Visualization, PyTorch, Statistics",Bachelor,16,Government,2024-03-09,2024-05-13,1080,5.1,DeepTech Ventures
+AI04829,AI Architect,80147,USD,MI,CT,France,S,Germany,0,"Spark, Git, NLP, TensorFlow, R",Associate,10,Manufacturing,2025-01-22,2025-06-27,1270,5.3,Machine Intelligence Group
+AI10353,AI Specialist,167899,GBP,EN,FL,Switzerland,L,China,50,"Git, Spark, Statistics, MLOps, Mathematics",Master,5,Gaming,2024-04-27,2025-01-30,569,6.1,Cloud AI Solutions
+</dataframe>
+
+
+
+
+Update this initial code:
+```python
+# TODO: import the required dependencies
+import pandas as pd
+
+# Write code here
+
+# Declare result var: 
+type (possible values "string", "number", "dataframe", "plot"). Examples: { "type": "string", "value": f"The highest salary is {highest_salary}." } or { "type": "number", "value": 125 } or { "type": "dataframe", "value": pd.DataFrame({...}) } or { "type": "plot", "value": "temp_chart.png" }
+
+```
+
+
+
+### QUERY
+ find the job requirements: job title must be Data Engineer, Remote job for years_experience is 0
+
+Variable `dfs: list[pd.DataFrame]` is already declared.
+
+At the end, declare "result" variable as a dictionary of type and value.
+
+If you are asked to plot a chart, use "matplotlib" for charts, save as png.
+
+
+Generate python code and return full updated code:
+            
+2025-09-19 00:09:35 [INFO] Code generated:
+            ```
+            # TODO: import the required dependencies
+import pandas as pd
+
+# Write code here
+filtered_df = dfs[0][
+    (dfs[0]['job_title'] == 'Data Engineer') &
+    (dfs[0]['remote_ratio'] == 100) &
+    (dfs[0]['years_experience'] == 0)
+]
+
+# Declare result var:
+result = {"type": "dataframe", "value": filtered_df}
+            ```
+            
+2025-09-19 00:09:35 [INFO] Executing Step 4: CachePopulation
+2025-09-19 00:09:35 [INFO] Executing Step 5: CodeCleaning
+2025-09-19 00:09:35 [INFO] 
+Code running:
+```
+filtered_df = dfs[0][(dfs[0]['job_title'] == 'Data Engineer') & (dfs[0]['remote_ratio'] == 100) & (dfs[0]['years_experience'] == 0)]
+result = {'type': 'dataframe', 'value': filtered_df}
+        ```
+2025-09-19 00:09:35 [INFO] Executing Step 6: CodeExecution
+2025-09-19 00:09:35 [INFO] Executing Step 7: ResultValidation
+2025-09-19 00:09:35 [INFO] Answer: {'type': 'dataframe', 'value':         job_id      job_title  salary_usd  ... job_description_length benefits_score                company_name
+74     AI00075  Data Engineer       51920  ...                   1778            7.9  Digital Transformation LLC
+75     AI00076  Data Engineer       56427  ...                   1366            5.2           DeepTech Ventures
+1159   AI01160  Data Engineer       52448  ...                   1084            9.4              DataVision Ltd
+1296   AI01297  Data Engineer       49276  ...                   1187            7.0       Algorithmic Solutions
+1656   AI01657  Data Engineer       54678  ...                   2174            5.7                TechCorp Inc
+2500   AI02501  Data Engineer       40107  ...                    707            8.6          Neural Networks Co
+3050   AI03051  Data Engineer       81264  ...                   1641            7.9          Predictive Systems
+3123   AI03124  Data Engineer       74951  ...                   1221            5.0             Autonomous Tech
+3405   AI03406  Data Engineer       62047  ...                   1109            5.6                TechCorp Inc
+3695   AI03696  Data Engineer       87328  ...                   2109            7.3          Neural Networks Co
+4065   AI04066  Data Engineer       74226  ...                    842            5.7       Algorithmic Solutions
+4169   AI04170  Data Engineer       54304  ...                    791            9.2              AI Innovations
+4295   AI04296  Data Engineer       51745  ...                   1665            7.1              DataVision Ltd
+4764   AI04765  Data Engineer       42201  ...                   1829            8.0  Machine Intelligence Group
+4875   AI04876  Data Engineer       72279  ...                   1568            5.5          Neural Networks Co
+5586   AI05587  Data Engineer       36579  ...                   1839            6.7             Smart Analytics
+6594   AI06595  Data Engineer       37602  ...                   1319           10.0          Cloud AI Solutions
+6931   AI06932  Data Engineer       76845  ...                   1166            7.5  Machine Intelligence Group
+8289   AI08290  Data Engineer       64601  ...                    928            9.0       Quantum Computing Inc
+10116  AI10117  Data Engineer       71386  ...                   1610            5.0              DataVision Ltd
+11005  AI11006  Data Engineer       95671  ...                   2390            8.4             Autonomous Tech
+12819  AI12820  Data Engineer       42305  ...                   2143            5.7           DeepTech Ventures
+13048  AI13049  Data Engineer       92828  ...                   2105            8.6          Predictive Systems
+13547  AI13548  Data Engineer       69977  ...                   1106            5.9       Quantum Computing Inc
+14644  AI14645  Data Engineer      106078  ...                   1469            8.3              DataVision Ltd
+
+[25 rows x 19 columns]}
+2025-09-19 00:09:35 [INFO] Executing Step 8: ResultParsing
+2025-09-19 00:09:55 [INFO] Question: find the job requirements: job title must be Data Engineer, Remote job for years_experience is 0    in table form
+2025-09-19 00:09:55 [INFO] Running PandasAI with langchain_groq-chat LLM...
+2025-09-19 00:09:55 [INFO] Prompt ID: c095182c-7494-4b18-996a-838294d5f5d1
+2025-09-19 00:09:55 [INFO] Executing Pipeline: GenerateChatPipeline
+2025-09-19 00:09:55 [INFO] Executing Step 0: ValidatePipelineInput
+2025-09-19 00:09:55 [INFO] Executing Step 1: CacheLookup
+2025-09-19 00:09:55 [INFO] Executing Step 2: PromptGeneration
+2025-09-19 00:09:55 [INFO] Using prompt: <dataframe>
+dfs[0]:15000x19
+job_id,job_title,salary_usd,salary_currency,experience_level,employment_type,company_location,company_size,employee_residence,remote_ratio,required_skills,education_required,years_experience,industry,posting_date,application_deadline,job_description_length,benefits_score,company_name
+AI08485,Research Scientist,130728,EUR,MI,CT,India,L,Ireland,100,"SQL, Docker, Git, Hadoop, Computer Vision",Associate,5,Healthcare,2024-11-09,2024-12-10,1659,9.3,Future Systems
+AI11997,Principal Data Scientist,120651,GBP,SE,FL,Norway,M,Sweden,50,"Docker, R, MLOps",Master,3,Government,2024-12-11,2025-03-31,1210,6.6,Smart Analytics
+AI08358,Data Analyst,137612,USD,EN,PT,Finland,S,Israel,0,"Computer Vision, Docker, SQL, AWS",PhD,8,Energy,2024-01-21,2024-11-26,2044,7.4,Cognitive Computing
+</dataframe>
+
+
+
+
+Update this initial code:
+```python
+# TODO: import the required dependencies
+import pandas as pd
+
+# Write code here
+
+# Declare result var: 
+type (possible values "string", "number", "dataframe", "plot"). Examples: { "type": "string", "value": f"The highest salary is {highest_salary}." } or { "type": "number", "value": 125 } or { "type": "dataframe", "value": pd.DataFrame({...}) } or { "type": "plot", "value": "temp_chart.png" }
+
+```
+
+
+
+### QUERY
+ find the job requirements: job title must be Data Engineer, Remote job for years_experience is 0    in table form
+
+Variable `dfs: list[pd.DataFrame]` is already declared.
+
+At the end, declare "result" variable as a dictionary of type and value.
+
+If you are asked to plot a chart, use "matplotlib" for charts, save as png.
+
+
+Generate python code and return full updated code:
+2025-09-19 00:09:55 [INFO] Executing Step 3: CodeGenerator
+2025-09-19 00:09:58 [INFO] HTTP Request: POST https://api.groq.com/openai/v1/chat/completions "HTTP/1.1 200 OK"
+2025-09-19 00:09:58 [INFO] Prompt used:
+            
+<dataframe>
+dfs[0]:15000x19
+job_id,job_title,salary_usd,salary_currency,experience_level,employment_type,company_location,company_size,employee_residence,remote_ratio,required_skills,education_required,years_experience,industry,posting_date,application_deadline,job_description_length,benefits_score,company_name
+AI08485,Research Scientist,130728,EUR,MI,CT,India,L,Ireland,100,"SQL, Docker, Git, Hadoop, Computer Vision",Associate,5,Healthcare,2024-11-09,2024-12-10,1659,9.3,Future Systems
+AI11997,Principal Data Scientist,120651,GBP,SE,FL,Norway,M,Sweden,50,"Docker, R, MLOps",Master,3,Government,2024-12-11,2025-03-31,1210,6.6,Smart Analytics
+AI08358,Data Analyst,137612,USD,EN,PT,Finland,S,Israel,0,"Computer Vision, Docker, SQL, AWS",PhD,8,Energy,2024-01-21,2024-11-26,2044,7.4,Cognitive Computing
+</dataframe>
+
+
+
+
+Update this initial code:
+```python
+# TODO: import the required dependencies
+import pandas as pd
+
+# Write code here
+
+# Declare result var: 
+type (possible values "string", "number", "dataframe", "plot"). Examples: { "type": "string", "value": f"The highest salary is {highest_salary}." } or { "type": "number", "value": 125 } or { "type": "dataframe", "value": pd.DataFrame({...}) } or { "type": "plot", "value": "temp_chart.png" }
+
+```
+
+
+
+### QUERY
+ find the job requirements: job title must be Data Engineer, Remote job for years_experience is 0    in table form
+
+Variable `dfs: list[pd.DataFrame]` is already declared.
+
+At the end, declare "result" variable as a dictionary of type and value.
+
+If you are asked to plot a chart, use "matplotlib" for charts, save as png.
+
+
+Generate python code and return full updated code:
+            
+2025-09-19 00:09:58 [INFO] Code generated:
+            ```
+            # TODO: import the required dependencies
+import pandas as pd
+
+# Write code here
+result_df = pd.DataFrame()
+
+for df in dfs:
+    filtered = df[
+        (df['job_title'] == 'Data Engineer') & 
+        (df['remote_ratio'] == 100) & 
+        (df['years_experience'] == 0)
+    ]
+    result_df = pd.concat([result_df, filtered])
+
+# Declare result var
+result = {"type": "dataframe", "value": result_df}
+            ```
+            
+2025-09-19 00:09:58 [INFO] Executing Step 4: CachePopulation
+2025-09-19 00:09:58 [INFO] Executing Step 5: CodeCleaning
+2025-09-19 00:09:58 [INFO] 
+Code running:
+```
+result_df = pd.DataFrame()
+for df in dfs:
+    filtered = df[(df['job_title'] == 'Data Engineer') & (df['remote_ratio'] == 100) & (df['years_experience'] == 0)]
+    result_df = pd.concat([result_df, filtered])
+result = {'type': 'dataframe', 'value': result_df}
+        ```
+2025-09-19 00:09:58 [INFO] Executing Step 6: CodeExecution
+2025-09-19 00:09:58 [INFO] Executing Step 7: ResultValidation
+2025-09-19 00:09:58 [INFO] Answer: {'type': 'dataframe', 'value':         job_id      job_title  salary_usd  ... job_description_length benefits_score                company_name
+74     AI00075  Data Engineer       51920  ...                   1778            7.9  Digital Transformation LLC
+75     AI00076  Data Engineer       56427  ...                   1366            5.2           DeepTech Ventures
+1159   AI01160  Data Engineer       52448  ...                   1084            9.4              DataVision Ltd
+1296   AI01297  Data Engineer       49276  ...                   1187            7.0       Algorithmic Solutions
+1656   AI01657  Data Engineer       54678  ...                   2174            5.7                TechCorp Inc
+2500   AI02501  Data Engineer       40107  ...                    707            8.6          Neural Networks Co
+3050   AI03051  Data Engineer       81264  ...                   1641            7.9          Predictive Systems
+3123   AI03124  Data Engineer       74951  ...                   1221            5.0             Autonomous Tech
+3405   AI03406  Data Engineer       62047  ...                   1109            5.6                TechCorp Inc
+3695   AI03696  Data Engineer       87328  ...                   2109            7.3          Neural Networks Co
+4065   AI04066  Data Engineer       74226  ...                    842            5.7       Algorithmic Solutions
+4169   AI04170  Data Engineer       54304  ...                    791            9.2              AI Innovations
+4295   AI04296  Data Engineer       51745  ...                   1665            7.1              DataVision Ltd
+4764   AI04765  Data Engineer       42201  ...                   1829            8.0  Machine Intelligence Group
+4875   AI04876  Data Engineer       72279  ...                   1568            5.5          Neural Networks Co
+5586   AI05587  Data Engineer       36579  ...                   1839            6.7             Smart Analytics
+6594   AI06595  Data Engineer       37602  ...                   1319           10.0          Cloud AI Solutions
+6931   AI06932  Data Engineer       76845  ...                   1166            7.5  Machine Intelligence Group
+8289   AI08290  Data Engineer       64601  ...                    928            9.0       Quantum Computing Inc
+10116  AI10117  Data Engineer       71386  ...                   1610            5.0              DataVision Ltd
+11005  AI11006  Data Engineer       95671  ...                   2390            8.4             Autonomous Tech
+12819  AI12820  Data Engineer       42305  ...                   2143            5.7           DeepTech Ventures
+13048  AI13049  Data Engineer       92828  ...                   2105            8.6          Predictive Systems
+13547  AI13548  Data Engineer       69977  ...                   1106            5.9       Quantum Computing Inc
+14644  AI14645  Data Engineer      106078  ...                   1469            8.3              DataVision Ltd
+
+[25 rows x 19 columns]}
+2025-09-19 00:09:58 [INFO] Executing Step 8: ResultParsing
+2025-09-19 00:10:22 [INFO] Question: which most reuquired skills
+2025-09-19 00:10:22 [INFO] Running PandasAI with langchain_groq-chat LLM...
+2025-09-19 00:10:22 [INFO] Prompt ID: 21b48131-c70d-4727-b47a-4b94548f7d58
+2025-09-19 00:10:22 [INFO] Executing Pipeline: GenerateChatPipeline
+2025-09-19 00:10:22 [INFO] Executing Step 0: ValidatePipelineInput
+2025-09-19 00:10:22 [INFO] Executing Step 1: CacheLookup
+2025-09-19 00:10:22 [INFO] Executing Step 2: PromptGeneration
+2025-09-19 00:10:22 [INFO] Using prompt: <dataframe>
+dfs[0]:15000x19
+job_id,job_title,salary_usd,salary_currency,experience_level,employment_type,company_location,company_size,employee_residence,remote_ratio,required_skills,education_required,years_experience,industry,posting_date,application_deadline,job_description_length,benefits_score,company_name
+AI01725,Robotics Engineer,54732,GBP,EN,FT,Singapore,S,Ireland,50,"Docker, Kubernetes, Git, AWS, Mathematics",PhD,16,Real Estate,2025-02-22,2025-05-07,549,9.9,Smart Analytics
+AI11706,Machine Learning Engineer,67945,USD,SE,CT,Netherlands,L,Sweden,0,"Tableau, Linux, Mathematics",Master,10,Manufacturing,2024-05-02,2025-02-04,1087,8.2,DataVision Ltd
+AI06376,Data Scientist,52942,EUR,EX,PT,Israel,M,Denmark,100,"Spark, GCP, PyTorch",Associate,14,Education,2024-09-14,2024-07-18,2189,5.3,TechCorp Inc
+</dataframe>
+
+
+
+
+Update this initial code:
+```python
+# TODO: import the required dependencies
+import pandas as pd
+
+# Write code here
+
+# Declare result var: 
+type (possible values "string", "number", "dataframe", "plot"). Examples: { "type": "string", "value": f"The highest salary is {highest_salary}." } or { "type": "number", "value": 125 } or { "type": "dataframe", "value": pd.DataFrame({...}) } or { "type": "plot", "value": "temp_chart.png" }
+
+```
+
+
+
+### QUERY
+ which most reuquired skills
+
+Variable `dfs: list[pd.DataFrame]` is already declared.
+
+At the end, declare "result" variable as a dictionary of type and value.
+
+If you are asked to plot a chart, use "matplotlib" for charts, save as png.
+
+
+Generate python code and return full updated code:
+2025-09-19 00:10:22 [INFO] Executing Step 3: CodeGenerator
+2025-09-19 00:10:26 [INFO] HTTP Request: POST https://api.groq.com/openai/v1/chat/completions "HTTP/1.1 200 OK"
+2025-09-19 00:10:26 [INFO] Prompt used:
+            
+<dataframe>
+dfs[0]:15000x19
+job_id,job_title,salary_usd,salary_currency,experience_level,employment_type,company_location,company_size,employee_residence,remote_ratio,required_skills,education_required,years_experience,industry,posting_date,application_deadline,job_description_length,benefits_score,company_name
+AI01725,Robotics Engineer,54732,GBP,EN,FT,Singapore,S,Ireland,50,"Docker, Kubernetes, Git, AWS, Mathematics",PhD,16,Real Estate,2025-02-22,2025-05-07,549,9.9,Smart Analytics
+AI11706,Machine Learning Engineer,67945,USD,SE,CT,Netherlands,L,Sweden,0,"Tableau, Linux, Mathematics",Master,10,Manufacturing,2024-05-02,2025-02-04,1087,8.2,DataVision Ltd
+AI06376,Data Scientist,52942,EUR,EX,PT,Israel,M,Denmark,100,"Spark, GCP, PyTorch",Associate,14,Education,2024-09-14,2024-07-18,2189,5.3,TechCorp Inc
+</dataframe>
+
+
+
+
+Update this initial code:
+```python
+# TODO: import the required dependencies
+import pandas as pd
+
+# Write code here
+
+# Declare result var: 
+type (possible values "string", "number", "dataframe", "plot"). Examples: { "type": "string", "value": f"The highest salary is {highest_salary}." } or { "type": "number", "value": 125 } or { "type": "dataframe", "value": pd.DataFrame({...}) } or { "type": "plot", "value": "temp_chart.png" }
+
+```
+
+
+
+### QUERY
+ which most reuquired skills
+
+Variable `dfs: list[pd.DataFrame]` is already declared.
+
+At the end, declare "result" variable as a dictionary of type and value.
+
+If you are asked to plot a chart, use "matplotlib" for charts, save as png.
+
+
+Generate python code and return full updated code:
+            
+2025-09-19 00:10:26 [INFO] Code generated:
+            ```
+            # Import required dependencies
+import pandas as pd
+
+# Process the first dataframe
+df = dfs[0]
+
+# Split required_skills, count occurrences, and create a dataframe
+skills_series = df.dropna(subset=['required_skills'])['required_skills'] \
+                  .str.split(', ') \
+                  .explode()
+skills_counts = skills_series.value_counts().reset_index()
+skills_counts.columns = ['skill', 'count']
+
+# Return the top 10 most required skills
+result = {"type": "dataframe", "value": skills_counts.head(10)}
+            ```
+            
+2025-09-19 00:10:26 [INFO] Executing Step 4: CachePopulation
+2025-09-19 00:10:26 [INFO] Executing Step 5: CodeCleaning
+2025-09-19 00:10:26 [INFO] 
+Code running:
+```
+df = dfs[0]
+skills_series = df.dropna(subset=['required_skills'])['required_skills'].str.split(', ').explode()
+skills_counts = skills_series.value_counts().reset_index()
+skills_counts.columns = ['skill', 'count']
+result = {'type': 'dataframe', 'value': skills_counts.head(10)}
+        ```
+2025-09-19 00:10:26 [INFO] Executing Step 6: CodeExecution
+2025-09-19 00:10:26 [INFO] Executing Step 7: ResultValidation
+2025-09-19 00:10:26 [INFO] Answer: {'type': 'dataframe', 'value':         skill  count
+0      Python   4450
+1         SQL   3407
+2  TensorFlow   3022
+3  Kubernetes   3009
+4       Scala   2794
+5     PyTorch   2777
+6       Linux   2705
+7         Git   2631
+8        Java   2578
+9         GCP   2442}
+2025-09-19 00:10:26 [INFO] Executing Step 8: ResultParsing
+2025-09-19 00:14:47 [INFO] Question: Show the average salary grouped by experience level as a bar chart
+2025-09-19 00:14:48 [INFO] Running PandasAI with langchain_groq-chat LLM...
+2025-09-19 00:14:48 [INFO] Prompt ID: 8a648f57-a771-422c-aa42-ce5f3d7b0ee8
+2025-09-19 00:14:48 [INFO] Executing Pipeline: GenerateChatPipeline
+2025-09-19 00:14:48 [INFO] Executing Step 0: ValidatePipelineInput
+2025-09-19 00:14:48 [INFO] Executing Step 1: CacheLookup
+2025-09-19 00:14:48 [INFO] Using cached response
+2025-09-19 00:14:48 [INFO] Executing Step 2: PromptGeneration
+2025-09-19 00:14:48 [INFO] Executing Step 2: Skipping...
+2025-09-19 00:14:48 [INFO] Executing Step 3: CodeGenerator
+2025-09-19 00:14:48 [INFO] Executing Step 3: Skipping...
+2025-09-19 00:14:48 [INFO] Executing Step 4: CachePopulation
+2025-09-19 00:14:48 [INFO] Executing Step 4: Skipping...
+2025-09-19 00:14:48 [INFO] Executing Step 5: CodeCleaning
+2025-09-19 00:14:48 [INFO] Saving charts to D:\Agents_Full_stack\Agents_backend\exports\charts\temp_chart.png
+2025-09-19 00:14:48 [INFO] 
+Code running:
+```
+df = dfs[0]
+average_salary = df.groupby('experience_level')['salary_usd'].mean().reset_index()
+plt.figure(figsize=(10, 6))
+plt.bar(average_salary['experience_level'], average_salary['salary_usd'], color='skyblue')
+plt.xlabel('Experience Level')
+plt.ylabel('Average Salary (USD)')
+plt.title('Average Salary by Experience Level')
+plt.tight_layout()
+plt.savefig('D:/Agents_Full_stack/Agents_backend/exports/charts/temp_chart.png')
+plt.close()
+result = {'type': 'plot', 'value': 'D:/Agents_Full_stack/Agents_backend/exports/charts/temp_chart.png'}
+        ```
+2025-09-19 00:14:48 [INFO] Executing Step 6: CodeExecution
+2025-09-19 00:14:49 [INFO] Executing Step 7: ResultValidation
+2025-09-19 00:14:49 [INFO] Answer: {'type': 'plot', 'value': 'D:/Agents_Full_stack/Agents_backend/exports/charts/temp_chart.png'}
+2025-09-19 00:14:49 [INFO] Executing Step 8: ResultParsing
+2025-09-19 00:18:53 [INFO] Question: Show the average salary grouped by experience level as a bar chart
+2025-09-19 00:18:54 [INFO] Running PandasAI with langchain_groq-chat LLM...
+2025-09-19 00:18:54 [INFO] Prompt ID: 6976f303-f323-4b91-ad8b-fc3eb2ecffd2
+2025-09-19 00:18:54 [INFO] Executing Pipeline: GenerateChatPipeline
+2025-09-19 00:18:55 [INFO] Executing Step 0: ValidatePipelineInput
+2025-09-19 00:18:55 [INFO] Executing Step 1: CacheLookup
+2025-09-19 00:18:55 [INFO] Using cached response
+2025-09-19 00:18:55 [INFO] Executing Step 2: PromptGeneration
+2025-09-19 00:18:55 [INFO] Executing Step 2: Skipping...
+2025-09-19 00:18:55 [INFO] Executing Step 3: CodeGenerator
+2025-09-19 00:18:55 [INFO] Executing Step 3: Skipping...
+2025-09-19 00:18:55 [INFO] Executing Step 4: CachePopulation
+2025-09-19 00:18:55 [INFO] Executing Step 4: Skipping...
+2025-09-19 00:18:55 [INFO] Executing Step 5: CodeCleaning
+2025-09-19 00:18:55 [INFO] Saving charts to D:\Agents_Full_stack\Agents_backend\exports\charts\temp_chart.png
+2025-09-19 00:18:55 [INFO] 
+Code running:
+```
+df = dfs[0]
+average_salary = df.groupby('experience_level')['salary_usd'].mean().reset_index()
+plt.figure(figsize=(10, 6))
+plt.bar(average_salary['experience_level'], average_salary['salary_usd'], color='skyblue')
+plt.xlabel('Experience Level')
+plt.ylabel('Average Salary (USD)')
+plt.title('Average Salary by Experience Level')
+plt.tight_layout()
+plt.savefig('D:/Agents_Full_stack/Agents_backend/exports/charts/temp_chart.png')
+plt.close()
+result = {'type': 'plot', 'value': 'D:/Agents_Full_stack/Agents_backend/exports/charts/temp_chart.png'}
+        ```
+2025-09-19 00:18:55 [INFO] Executing Step 6: CodeExecution
+2025-09-19 00:18:55 [INFO] Executing Step 7: ResultValidation
+2025-09-19 00:18:55 [INFO] Answer: {'type': 'plot', 'value': 'D:/Agents_Full_stack/Agents_backend/exports/charts/temp_chart.png'}
+2025-09-19 00:18:56 [INFO] Executing Step 8: ResultParsing
+2025-09-19 00:20:03 [INFO] Question: Show the average salary grouped by experience level as a bar chart
+2025-09-19 00:20:04 [INFO] Running PandasAI with langchain_groq-chat LLM...
+2025-09-19 00:20:04 [INFO] Prompt ID: dda03849-7338-4d1c-849c-7254bd0c4cb1
+2025-09-19 00:20:04 [INFO] Executing Pipeline: GenerateChatPipeline
+2025-09-19 00:20:04 [INFO] Executing Step 0: ValidatePipelineInput
+2025-09-19 00:20:04 [INFO] Executing Step 1: CacheLookup
+2025-09-19 00:20:04 [INFO] Using cached response
+2025-09-19 00:20:04 [INFO] Executing Step 2: PromptGeneration
+2025-09-19 00:20:04 [INFO] Executing Step 2: Skipping...
+2025-09-19 00:20:04 [INFO] Executing Step 3: CodeGenerator
+2025-09-19 00:20:04 [INFO] Executing Step 3: Skipping...
+2025-09-19 00:20:04 [INFO] Executing Step 4: CachePopulation
+2025-09-19 00:20:04 [INFO] Executing Step 4: Skipping...
+2025-09-19 00:20:04 [INFO] Executing Step 5: CodeCleaning
+2025-09-19 00:20:04 [INFO] Saving charts to D:\Agents_Full_stack\Agents_backend\exports\charts\temp_chart.png
+2025-09-19 00:20:04 [INFO] 
+Code running:
+```
+df = dfs[0]
+average_salary = df.groupby('experience_level')['salary_usd'].mean().reset_index()
+plt.figure(figsize=(10, 6))
+plt.bar(average_salary['experience_level'], average_salary['salary_usd'], color='skyblue')
+plt.xlabel('Experience Level')
+plt.ylabel('Average Salary (USD)')
+plt.title('Average Salary by Experience Level')
+plt.tight_layout()
+plt.savefig('D:/Agents_Full_stack/Agents_backend/exports/charts/temp_chart.png')
+plt.close()
+result = {'type': 'plot', 'value': 'D:/Agents_Full_stack/Agents_backend/exports/charts/temp_chart.png'}
+        ```
+2025-09-19 00:20:04 [INFO] Executing Step 6: CodeExecution
+2025-09-19 00:20:05 [INFO] Executing Step 7: ResultValidation
+2025-09-19 00:20:05 [INFO] Answer: {'type': 'plot', 'value': 'D:/Agents_Full_stack/Agents_backend/exports/charts/temp_chart.png'}
+2025-09-19 00:20:05 [INFO] Executing Step 8: ResultParsing
+2025-09-19 00:20:25 [INFO] Question: Show the average salary grouped by experience level as a bar chart
+2025-09-19 00:20:25 [INFO] Running PandasAI with langchain_groq-chat LLM...
+2025-09-19 00:20:25 [INFO] Prompt ID: 56530769-aaaa-4851-9522-7bc05f109d19
+2025-09-19 00:20:25 [INFO] Executing Pipeline: GenerateChatPipeline
+2025-09-19 00:20:26 [INFO] Executing Step 0: ValidatePipelineInput
+2025-09-19 00:20:26 [INFO] Executing Step 1: CacheLookup
+2025-09-19 00:20:26 [INFO] Using cached response
+2025-09-19 00:20:26 [INFO] Executing Step 2: PromptGeneration
+2025-09-19 00:20:26 [INFO] Executing Step 2: Skipping...
+2025-09-19 00:20:26 [INFO] Executing Step 3: CodeGenerator
+2025-09-19 00:20:26 [INFO] Executing Step 3: Skipping...
+2025-09-19 00:20:26 [INFO] Executing Step 4: CachePopulation
+2025-09-19 00:20:26 [INFO] Executing Step 4: Skipping...
+2025-09-19 00:20:26 [INFO] Executing Step 5: CodeCleaning
+2025-09-19 00:20:26 [INFO] Saving charts to D:\Agents_Full_stack\Agents_backend\exports\charts\temp_chart.png
+2025-09-19 00:20:26 [INFO] 
+Code running:
+```
+df = dfs[0]
+average_salary = df.groupby('experience_level')['salary_usd'].mean().reset_index()
+plt.figure(figsize=(10, 6))
+plt.bar(average_salary['experience_level'], average_salary['salary_usd'], color='skyblue')
+plt.xlabel('Experience Level')
+plt.ylabel('Average Salary (USD)')
+plt.title('Average Salary by Experience Level')
+plt.tight_layout()
+plt.savefig('D:/Agents_Full_stack/Agents_backend/exports/charts/temp_chart.png')
+plt.close()
+result = {'type': 'plot', 'value': 'D:/Agents_Full_stack/Agents_backend/exports/charts/temp_chart.png'}
+        ```
+2025-09-19 00:20:26 [INFO] Executing Step 6: CodeExecution
+2025-09-19 00:20:26 [INFO] Executing Step 7: ResultValidation
+2025-09-19 00:20:26 [INFO] Answer: {'type': 'plot', 'value': 'D:/Agents_Full_stack/Agents_backend/exports/charts/temp_chart.png'}
+2025-09-19 00:20:26 [INFO] Executing Step 8: ResultParsing
+2025-09-19 00:27:10 [INFO] Question: Show the average salary grouped by experience level as a bar chart
+2025-09-19 00:27:12 [INFO] Running PandasAI with langchain_groq-chat LLM...
+2025-09-19 00:27:12 [INFO] Prompt ID: 283d1357-a45c-437e-9f02-387b89d7a2c1
+2025-09-19 00:27:12 [INFO] Executing Pipeline: GenerateChatPipeline
+2025-09-19 00:27:12 [INFO] Executing Step 0: ValidatePipelineInput
+2025-09-19 00:27:12 [INFO] Executing Step 1: CacheLookup
+2025-09-19 00:27:12 [INFO] Using cached response
+2025-09-19 00:27:12 [INFO] Executing Step 2: PromptGeneration
+2025-09-19 00:27:12 [INFO] Executing Step 2: Skipping...
+2025-09-19 00:27:12 [INFO] Executing Step 3: CodeGenerator
+2025-09-19 00:27:12 [INFO] Executing Step 3: Skipping...
+2025-09-19 00:27:12 [INFO] Executing Step 4: CachePopulation
+2025-09-19 00:27:12 [INFO] Executing Step 4: Skipping...
+2025-09-19 00:27:12 [INFO] Executing Step 5: CodeCleaning
+2025-09-19 00:27:12 [INFO] Saving charts to D:\Agents_Full_stack\Agents_backend\exports\charts\temp_chart.png
+2025-09-19 00:27:12 [INFO] 
+Code running:
+```
+df = dfs[0]
+average_salary = df.groupby('experience_level')['salary_usd'].mean().reset_index()
+plt.figure(figsize=(10, 6))
+plt.bar(average_salary['experience_level'], average_salary['salary_usd'], color='skyblue')
+plt.xlabel('Experience Level')
+plt.ylabel('Average Salary (USD)')
+plt.title('Average Salary by Experience Level')
+plt.tight_layout()
+plt.savefig('D:/Agents_Full_stack/Agents_backend/exports/charts/temp_chart.png')
+plt.close()
+result = {'type': 'plot', 'value': 'D:/Agents_Full_stack/Agents_backend/exports/charts/temp_chart.png'}
+        ```
+2025-09-19 00:27:12 [INFO] Executing Step 6: CodeExecution
+2025-09-19 00:27:13 [INFO] Executing Step 7: ResultValidation
+2025-09-19 00:27:13 [INFO] Answer: {'type': 'plot', 'value': 'D:/Agents_Full_stack/Agents_backend/exports/charts/temp_chart.png'}
+2025-09-19 00:27:13 [INFO] Executing Step 8: ResultParsing
+2025-09-19 00:29:20 [INFO] Question: Show the average salary grouped by experience level as a bar chart
+2025-09-19 00:29:20 [INFO] Running PandasAI with langchain_groq-chat LLM...
+2025-09-19 00:29:20 [INFO] Prompt ID: ffead938-917f-4b09-acd2-00fd28e480d8
+2025-09-19 00:29:20 [INFO] Executing Pipeline: GenerateChatPipeline
+2025-09-19 00:29:21 [INFO] Executing Step 0: ValidatePipelineInput
+2025-09-19 00:29:21 [INFO] Executing Step 1: CacheLookup
+2025-09-19 00:29:21 [INFO] Using cached response
+2025-09-19 00:29:21 [INFO] Executing Step 2: PromptGeneration
+2025-09-19 00:29:21 [INFO] Executing Step 2: Skipping...
+2025-09-19 00:29:21 [INFO] Executing Step 3: CodeGenerator
+2025-09-19 00:29:21 [INFO] Executing Step 3: Skipping...
+2025-09-19 00:29:21 [INFO] Executing Step 4: CachePopulation
+2025-09-19 00:29:21 [INFO] Executing Step 4: Skipping...
+2025-09-19 00:29:21 [INFO] Executing Step 5: CodeCleaning
+2025-09-19 00:29:21 [INFO] Saving charts to D:\Agents_Full_stack\Agents_backend\exports\charts\temp_chart.png
+2025-09-19 00:29:21 [INFO] 
+Code running:
+```
+df = dfs[0]
+average_salary = df.groupby('experience_level')['salary_usd'].mean().reset_index()
+plt.figure(figsize=(10, 6))
+plt.bar(average_salary['experience_level'], average_salary['salary_usd'], color='skyblue')
+plt.xlabel('Experience Level')
+plt.ylabel('Average Salary (USD)')
+plt.title('Average Salary by Experience Level')
+plt.tight_layout()
+plt.savefig('D:/Agents_Full_stack/Agents_backend/exports/charts/temp_chart.png')
+plt.close()
+result = {'type': 'plot', 'value': 'D:/Agents_Full_stack/Agents_backend/exports/charts/temp_chart.png'}
+        ```
+2025-09-19 00:29:21 [INFO] Executing Step 6: CodeExecution
+2025-09-19 00:29:21 [INFO] Executing Step 7: ResultValidation
+2025-09-19 00:29:21 [INFO] Answer: {'type': 'plot', 'value': 'D:/Agents_Full_stack/Agents_backend/exports/charts/temp_chart.png'}
+2025-09-19 00:29:21 [INFO] Executing Step 8: ResultParsing
+2025-09-19 00:30:03 [INFO] Question: find the job requirements: job title must be Data Engineer, Remote job
+2025-09-19 00:30:03 [INFO] Running PandasAI with langchain_groq-chat LLM...
+2025-09-19 00:30:03 [INFO] Prompt ID: a0bb719b-4be5-493e-97ba-59819293164d
+2025-09-19 00:30:03 [INFO] Executing Pipeline: GenerateChatPipeline
+2025-09-19 00:30:03 [INFO] Executing Step 0: ValidatePipelineInput
+2025-09-19 00:30:03 [INFO] Executing Step 1: CacheLookup
+2025-09-19 00:30:03 [INFO] Executing Step 2: PromptGeneration
+2025-09-19 00:30:03 [INFO] Using prompt: <dataframe>
+dfs[0]:15000x19
+job_id,job_title,salary_usd,salary_currency,experience_level,employment_type,company_location,company_size,employee_residence,remote_ratio,required_skills,education_required,years_experience,industry,posting_date,application_deadline,job_description_length,benefits_score,company_name
+AI07433,AI Consultant,44451,EUR,EN,PT,Australia,L,Denmark,0,"Spark, Scala, Java, Computer Vision, Azure",Bachelor,5,Technology,2024-01-25,2024-12-05,630,6.3,Digital Transformation LLC
+AI10323,Data Engineer,208210,USD,SE,FL,Austria,M,Netherlands,100,"Docker, Data Visualization, Python, R, Linux",Master,0,Manufacturing,2024-04-22,2024-02-16,703,6.2,TechCorp Inc
+AI13736,Autonomous Systems Engineer,153063,GBP,EX,CT,Japan,S,Norway,50,"Python, Scala, Java, GCP, AWS",PhD,18,Government,2025-02-24,2025-02-03,819,9.5,DeepTech Ventures
+</dataframe>
+
+
+
+
+Update this initial code:
+```python
+# TODO: import the required dependencies
+import pandas as pd
+
+# Write code here
+
+# Declare result var: 
+type (possible values "string", "number", "dataframe", "plot"). Examples: { "type": "string", "value": f"The highest salary is {highest_salary}." } or { "type": "number", "value": 125 } or { "type": "dataframe", "value": pd.DataFrame({...}) } or { "type": "plot", "value": "temp_chart.png" }
+
+```
+
+
+
+### QUERY
+ find the job requirements: job title must be Data Engineer, Remote job
+
+Variable `dfs: list[pd.DataFrame]` is already declared.
+
+At the end, declare "result" variable as a dictionary of type and value.
+
+If you are asked to plot a chart, use "matplotlib" for charts, save as png.
+
+
+Generate python code and return full updated code:
+2025-09-19 00:30:03 [INFO] Executing Step 3: CodeGenerator
+2025-09-19 00:30:06 [INFO] HTTP Request: POST https://api.groq.com/openai/v1/chat/completions "HTTP/1.1 200 OK"
+2025-09-19 00:30:06 [INFO] Prompt used:
+            
+<dataframe>
+dfs[0]:15000x19
+job_id,job_title,salary_usd,salary_currency,experience_level,employment_type,company_location,company_size,employee_residence,remote_ratio,required_skills,education_required,years_experience,industry,posting_date,application_deadline,job_description_length,benefits_score,company_name
+AI07433,AI Consultant,44451,EUR,EN,PT,Australia,L,Denmark,0,"Spark, Scala, Java, Computer Vision, Azure",Bachelor,5,Technology,2024-01-25,2024-12-05,630,6.3,Digital Transformation LLC
+AI10323,Data Engineer,208210,USD,SE,FL,Austria,M,Netherlands,100,"Docker, Data Visualization, Python, R, Linux",Master,0,Manufacturing,2024-04-22,2024-02-16,703,6.2,TechCorp Inc
+AI13736,Autonomous Systems Engineer,153063,GBP,EX,CT,Japan,S,Norway,50,"Python, Scala, Java, GCP, AWS",PhD,18,Government,2025-02-24,2025-02-03,819,9.5,DeepTech Ventures
+</dataframe>
+
+
+
+
+Update this initial code:
+```python
+# TODO: import the required dependencies
+import pandas as pd
+
+# Write code here
+
+# Declare result var: 
+type (possible values "string", "number", "dataframe", "plot"). Examples: { "type": "string", "value": f"The highest salary is {highest_salary}." } or { "type": "number", "value": 125 } or { "type": "dataframe", "value": pd.DataFrame({...}) } or { "type": "plot", "value": "temp_chart.png" }
+
+```
+
+
+
+### QUERY
+ find the job requirements: job title must be Data Engineer, Remote job
+
+Variable `dfs: list[pd.DataFrame]` is already declared.
+
+At the end, declare "result" variable as a dictionary of type and value.
+
+If you are asked to plot a chart, use "matplotlib" for charts, save as png.
+
+
+Generate python code and return full updated code:
+            
+2025-09-19 00:30:06 [INFO] Code generated:
+            ```
+            # TODO: import the required dependencies
+import pandas as pd
+
+# Write code here
+df = dfs[0]
+# Filter for Data Engineer roles that are fully remote (remote_ratio = 100)
+filtered_df = df[(df['job_title'] == 'Data Engineer') & (df['remote_ratio'] == 100)]
+
+# Declare result var
+result = {"type": "dataframe", "value": filtered_df}
+            ```
+            
+2025-09-19 00:30:06 [INFO] Executing Step 4: CachePopulation
+2025-09-19 00:30:06 [INFO] Executing Step 5: CodeCleaning
+2025-09-19 00:30:06 [INFO] 
+Code running:
+```
+df = dfs[0]
+filtered_df = df[(df['job_title'] == 'Data Engineer') & (df['remote_ratio'] == 100)]
+result = {'type': 'dataframe', 'value': filtered_df}
+        ```
+2025-09-19 00:30:06 [INFO] Executing Step 6: CodeExecution
+2025-09-19 00:30:06 [INFO] Executing Step 7: ResultValidation
+2025-09-19 00:30:07 [INFO] Answer: {'type': 'dataframe', 'value':         job_id      job_title  salary_usd  ... job_description_length benefits_score                company_name
+39     AI00040  Data Engineer      166080  ...                    831            5.1           DeepTech Ventures
+74     AI00075  Data Engineer       51920  ...                   1778            7.9  Digital Transformation LLC
+75     AI00076  Data Engineer       56427  ...                   1366            5.2           DeepTech Ventures
+104    AI00105  Data Engineer      213287  ...                   1102            6.3          Cloud AI Solutions
+169    AI00170  Data Engineer      145355  ...                    685            9.6           DeepTech Ventures
+...        ...            ...         ...  ...                    ...            ...                         ...
+14728  AI14729  Data Engineer      100644  ...                   2316           10.0          Neural Networks Co
+14767  AI14768  Data Engineer       77365  ...                   1022            5.9          Predictive Systems
+14798  AI14799  Data Engineer       66322  ...                    683            8.2           DeepTech Ventures
+14856  AI14857  Data Engineer      118900  ...                   1721            5.6             Smart Analytics
+14886  AI14887  Data Engineer       67150  ...                    755            9.9                TechCorp Inc
+
+[260 rows x 19 columns]}
+2025-09-19 00:30:07 [INFO] Executing Step 8: ResultParsing
+2025-09-19 00:30:36 [INFO] Question: How many rows are there?
+2025-09-19 00:30:36 [INFO] Running PandasAI with langchain_groq-chat LLM...
+2025-09-19 00:30:36 [INFO] Prompt ID: 3c83a87b-3f27-42e9-907f-93ae3f982737
+2025-09-19 00:30:36 [INFO] Executing Pipeline: GenerateChatPipeline
+2025-09-19 00:30:36 [INFO] Executing Step 0: ValidatePipelineInput
+2025-09-19 00:30:36 [INFO] Executing Step 1: CacheLookup
+2025-09-19 00:30:36 [INFO] Executing Step 2: PromptGeneration
+2025-09-19 00:30:36 [INFO] Using prompt: <dataframe>
+dfs[0]:15000x19
+job_id,job_title,salary_usd,salary_currency,experience_level,employment_type,company_location,company_size,employee_residence,remote_ratio,required_skills,education_required,years_experience,industry,posting_date,application_deadline,job_description_length,benefits_score,company_name
+AI08692,ML Ops Engineer,84302,GBP,MI,FL,Germany,S,China,0,"Mathematics, Git, NLP",Bachelor,8,Media,2024-05-14,2024-02-26,959,9.4,Quantum Computing Inc
+AI11179,AI Specialist,176165,EUR,SE,PT,China,L,Japan,100,"Java, Spark, Data Visualization, TensorFlow",Associate,19,Healthcare,2024-05-16,2025-07-06,1729,8.1,Predictive Systems
+AI05215,Data Engineer,140617,USD,EN,CT,Denmark,M,United Kingdom,50,"Computer Vision, Python, Deep Learning, Azure",PhD,15,Real Estate,2025-03-02,2024-08-31,1505,9.9,Digital Transformation LLC
+</dataframe>
+
+
+
+
+Update this initial code:
+```python
+# TODO: import the required dependencies
+import pandas as pd
+
+# Write code here
+
+# Declare result var: 
+type (possible values "string", "number", "dataframe", "plot"). Examples: { "type": "string", "value": f"The highest salary is {highest_salary}." } or { "type": "number", "value": 125 } or { "type": "dataframe", "value": pd.DataFrame({...}) } or { "type": "plot", "value": "temp_chart.png" }
+
+```
+
+
+
+### QUERY
+ How many rows are there?
+
+Variable `dfs: list[pd.DataFrame]` is already declared.
+
+At the end, declare "result" variable as a dictionary of type and value.
+
+If you are asked to plot a chart, use "matplotlib" for charts, save as png.
+
+
+Generate python code and return full updated code:
+2025-09-19 00:30:36 [INFO] Executing Step 3: CodeGenerator
+2025-09-19 00:30:38 [INFO] HTTP Request: POST https://api.groq.com/openai/v1/chat/completions "HTTP/1.1 200 OK"
+2025-09-19 00:30:38 [INFO] Prompt used:
+            
+<dataframe>
+dfs[0]:15000x19
+job_id,job_title,salary_usd,salary_currency,experience_level,employment_type,company_location,company_size,employee_residence,remote_ratio,required_skills,education_required,years_experience,industry,posting_date,application_deadline,job_description_length,benefits_score,company_name
+AI08692,ML Ops Engineer,84302,GBP,MI,FL,Germany,S,China,0,"Mathematics, Git, NLP",Bachelor,8,Media,2024-05-14,2024-02-26,959,9.4,Quantum Computing Inc
+AI11179,AI Specialist,176165,EUR,SE,PT,China,L,Japan,100,"Java, Spark, Data Visualization, TensorFlow",Associate,19,Healthcare,2024-05-16,2025-07-06,1729,8.1,Predictive Systems
+AI05215,Data Engineer,140617,USD,EN,CT,Denmark,M,United Kingdom,50,"Computer Vision, Python, Deep Learning, Azure",PhD,15,Real Estate,2025-03-02,2024-08-31,1505,9.9,Digital Transformation LLC
+</dataframe>
+
+
+
+
+Update this initial code:
+```python
+# TODO: import the required dependencies
+import pandas as pd
+
+# Write code here
+
+# Declare result var: 
+type (possible values "string", "number", "dataframe", "plot"). Examples: { "type": "string", "value": f"The highest salary is {highest_salary}." } or { "type": "number", "value": 125 } or { "type": "dataframe", "value": pd.DataFrame({...}) } or { "type": "plot", "value": "temp_chart.png" }
+
+```
+
+
+
+### QUERY
+ How many rows are there?
+
+Variable `dfs: list[pd.DataFrame]` is already declared.
+
+At the end, declare "result" variable as a dictionary of type and value.
+
+If you are asked to plot a chart, use "matplotlib" for charts, save as png.
+
+
+Generate python code and return full updated code:
+            
+2025-09-19 00:30:38 [INFO] Code generated:
+            ```
+            # TODO: import the required dependencies
+import pandas as pd
+
+# Write code here
+num_rows = len(dfs[0])
+
+# Declare result var: 
+result = { "type": "number", "value": num_rows }
+            ```
+            
+2025-09-19 00:30:38 [INFO] Executing Step 4: CachePopulation
+2025-09-19 00:30:38 [INFO] Executing Step 5: CodeCleaning
+2025-09-19 00:30:38 [INFO] 
+Code running:
+```
+num_rows = len(dfs[0])
+result = {'type': 'number', 'value': num_rows}
+        ```
+2025-09-19 00:30:38 [INFO] Executing Step 6: CodeExecution
+2025-09-19 00:30:38 [INFO] Executing Step 7: ResultValidation
+2025-09-19 00:30:38 [INFO] Answer: {'type': 'number', 'value': 15000}
+2025-09-19 00:30:38 [INFO] Executing Step 8: ResultParsing
+2025-09-19 00:32:52 [INFO] Question: provide statistics about data, in a table form
+2025-09-19 00:32:52 [INFO] Running PandasAI with langchain_groq-chat LLM...
+2025-09-19 00:32:52 [INFO] Prompt ID: 49d6e844-78b2-4e5b-8e4d-bcde5e1a967d
+2025-09-19 00:32:52 [INFO] Executing Pipeline: GenerateChatPipeline
+2025-09-19 00:32:52 [INFO] Executing Step 0: ValidatePipelineInput
+2025-09-19 00:32:52 [INFO] Executing Step 1: CacheLookup
+2025-09-19 00:32:52 [INFO] Executing Step 2: PromptGeneration
+2025-09-19 00:32:52 [INFO] Using prompt: <dataframe>
+dfs[0]:15000x19
+job_id,job_title,salary_usd,salary_currency,experience_level,employment_type,company_location,company_size,employee_residence,remote_ratio,required_skills,education_required,years_experience,industry,posting_date,application_deadline,job_description_length,benefits_score,company_name
+AI05963,Machine Learning Engineer,118988,EUR,MI,FT,South Korea,S,Norway,0,"Python, Java, NLP, Git",Bachelor,3,Finance,2024-09-23,2025-02-11,1071,8.8,TechCorp Inc
+AI00294,Robotics Engineer,98681,GBP,SE,CT,Ireland,M,Germany,100,"Scala, SQL, Docker, GCP",Master,2,Automotive,2024-04-06,2024-12-15,1431,5.2,Cognitive Computing
+AI12206,AI Software Engineer,251576,USD,EN,PT,Austria,L,Australia,50,"Kubernetes, PyTorch, AWS, Deep Learning",Associate,19,Healthcare,2024-04-04,2024-11-26,1115,9.6,Future Systems
+</dataframe>
+
+
+
+
+Update this initial code:
+```python
+# TODO: import the required dependencies
+import pandas as pd
+
+# Write code here
+
+# Declare result var: 
+type (possible values "string", "number", "dataframe", "plot"). Examples: { "type": "string", "value": f"The highest salary is {highest_salary}." } or { "type": "number", "value": 125 } or { "type": "dataframe", "value": pd.DataFrame({...}) } or { "type": "plot", "value": "temp_chart.png" }
+
+```
+
+
+
+### QUERY
+ provide statistics about data, in a table form
+
+Variable `dfs: list[pd.DataFrame]` is already declared.
+
+At the end, declare "result" variable as a dictionary of type and value.
+
+If you are asked to plot a chart, use "matplotlib" for charts, save as png.
+
+
+Generate python code and return full updated code:
+2025-09-19 00:32:52 [INFO] Executing Step 3: CodeGenerator
+2025-09-19 00:32:57 [INFO] HTTP Request: POST https://api.groq.com/openai/v1/chat/completions "HTTP/1.1 200 OK"
+2025-09-19 00:32:57 [INFO] Prompt used:
+            
+<dataframe>
+dfs[0]:15000x19
+job_id,job_title,salary_usd,salary_currency,experience_level,employment_type,company_location,company_size,employee_residence,remote_ratio,required_skills,education_required,years_experience,industry,posting_date,application_deadline,job_description_length,benefits_score,company_name
+AI05963,Machine Learning Engineer,118988,EUR,MI,FT,South Korea,S,Norway,0,"Python, Java, NLP, Git",Bachelor,3,Finance,2024-09-23,2025-02-11,1071,8.8,TechCorp Inc
+AI00294,Robotics Engineer,98681,GBP,SE,CT,Ireland,M,Germany,100,"Scala, SQL, Docker, GCP",Master,2,Automotive,2024-04-06,2024-12-15,1431,5.2,Cognitive Computing
+AI12206,AI Software Engineer,251576,USD,EN,PT,Austria,L,Australia,50,"Kubernetes, PyTorch, AWS, Deep Learning",Associate,19,Healthcare,2024-04-04,2024-11-26,1115,9.6,Future Systems
+</dataframe>
+
+
+
+
+Update this initial code:
+```python
+# TODO: import the required dependencies
+import pandas as pd
+
+# Write code here
+
+# Declare result var: 
+type (possible values "string", "number", "dataframe", "plot"). Examples: { "type": "string", "value": f"The highest salary is {highest_salary}." } or { "type": "number", "value": 125 } or { "type": "dataframe", "value": pd.DataFrame({...}) } or { "type": "plot", "value": "temp_chart.png" }
+
+```
+
+
+
+### QUERY
+ provide statistics about data, in a table form
+
+Variable `dfs: list[pd.DataFrame]` is already declared.
+
+At the end, declare "result" variable as a dictionary of type and value.
+
+If you are asked to plot a chart, use "matplotlib" for charts, save as png.
+
+
+Generate python code and return full updated code:
+            
+2025-09-19 00:32:57 [INFO] Code generated:
+            ```
+            # Import the required dependencies
+import pandas as pd
+
+# Write code here
+df = dfs[0]
+numerical_stats = df.describe(include='number')
+
+# Declare result var
+result = {
+    "type": "dataframe",
+    "value": numerical_stats
+}
+            ```
+            
+2025-09-19 00:32:57 [INFO] Executing Step 4: CachePopulation
+2025-09-19 00:32:57 [INFO] Executing Step 5: CodeCleaning
+2025-09-19 00:32:57 [INFO] 
+Code running:
+```
+df = dfs[0]
+numerical_stats = df.describe(include='number')
+result = {'type': 'dataframe', 'value': numerical_stats}
+        ```
+2025-09-19 00:32:57 [INFO] Executing Step 6: CodeExecution
+2025-09-19 00:32:57 [INFO] Executing Step 7: ResultValidation
+2025-09-19 00:32:57 [INFO] Answer: {'type': 'dataframe', 'value':           salary_usd  remote_ratio  years_experience  job_description_length  benefits_score
+count   15000.000000  15000.000000      15000.000000            15000.000000    15000.000000
+mean   115348.965133     49.483333          6.253200             1503.314733        7.504273
+std     60260.940438     40.812712          5.545768              576.127083        1.450870
+min     32519.000000      0.000000          0.000000              500.000000        5.000000
+25%     70179.750000      0.000000          2.000000             1003.750000        6.200000
+50%     99705.000000     50.000000          5.000000             1512.000000        7.500000
+75%    146408.500000    100.000000         10.000000             2000.000000        8.800000
+max    399095.000000    100.000000         19.000000             2499.000000       10.000000}
+2025-09-19 00:32:57 [INFO] Executing Step 8: ResultParsing
+2025-09-19 15:43:44 [INFO] Question: Hi
+2025-09-19 15:43:47 [INFO] Running PandasAI with langchain_groq-chat LLM...
+2025-09-19 15:43:47 [INFO] Prompt ID: d4e45e4c-8515-4686-92dc-12205d787852
+2025-09-19 15:43:47 [INFO] Executing Pipeline: GenerateChatPipeline
+2025-09-19 15:43:47 [INFO] Executing Step 0: ValidatePipelineInput
+2025-09-19 15:43:47 [INFO] Executing Step 1: CacheLookup
+2025-09-19 15:43:47 [INFO] Using cached response
+2025-09-19 15:43:47 [INFO] Executing Step 2: PromptGeneration
+2025-09-19 15:43:47 [INFO] Executing Step 2: Skipping...
+2025-09-19 15:43:47 [INFO] Executing Step 3: CodeGenerator
+2025-09-19 15:43:47 [INFO] Executing Step 3: Skipping...
+2025-09-19 15:43:47 [INFO] Executing Step 4: CachePopulation
+2025-09-19 15:43:47 [INFO] Executing Step 4: Skipping...
+2025-09-19 15:43:47 [INFO] Executing Step 5: CodeCleaning
+2025-09-19 15:43:47 [INFO] 
+Code running:
+```
+df = pd.concat(dfs, ignore_index=True)
+max_salary = df['salary_usd'].max()
+result = {'type': 'string', 'value': f'The highest salary is {max_salary}.'}
+        ```
+2025-09-19 15:43:47 [INFO] Executing Step 6: CodeExecution
+2025-09-19 15:43:47 [INFO] Executing Step 7: ResultValidation
+2025-09-19 15:43:47 [INFO] Answer: {'type': 'string', 'value': 'The highest salary is 399095.'}
+2025-09-19 15:43:47 [INFO] Executing Step 8: ResultParsing
+2025-09-19 15:48:12 [INFO] Question: Show the average salary grouped by experience level as a bar chart
+2025-09-19 15:48:12 [INFO] Running PandasAI with langchain_groq-chat LLM...
+2025-09-19 15:48:12 [INFO] Prompt ID: 0fcf6818-29f5-483e-a70c-ba7ea812f21a
+2025-09-19 15:48:12 [INFO] Executing Pipeline: GenerateChatPipeline
+2025-09-19 15:48:13 [INFO] Executing Step 0: ValidatePipelineInput
+2025-09-19 15:48:13 [INFO] Executing Step 1: CacheLookup
+2025-09-19 15:48:13 [INFO] Using cached response
+2025-09-19 15:48:13 [INFO] Executing Step 2: PromptGeneration
+2025-09-19 15:48:13 [INFO] Executing Step 2: Skipping...
+2025-09-19 15:48:13 [INFO] Executing Step 3: CodeGenerator
+2025-09-19 15:48:13 [INFO] Executing Step 3: Skipping...
+2025-09-19 15:48:13 [INFO] Executing Step 4: CachePopulation
+2025-09-19 15:48:13 [INFO] Executing Step 4: Skipping...
+2025-09-19 15:48:13 [INFO] Executing Step 5: CodeCleaning
+2025-09-19 15:48:13 [INFO] Saving charts to D:\Agents_Full_stack\Agents_backend\exports\charts\temp_chart.png
+2025-09-19 15:48:13 [INFO] 
+Code running:
+```
+df = dfs[0]
+average_salary = df.groupby('experience_level')['salary_usd'].mean().reset_index()
+plt.figure(figsize=(10, 6))
+plt.bar(average_salary['experience_level'], average_salary['salary_usd'], color='skyblue')
+plt.xlabel('Experience Level')
+plt.ylabel('Average Salary (USD)')
+plt.title('Average Salary by Experience Level')
+plt.tight_layout()
+plt.savefig('D:/Agents_Full_stack/Agents_backend/exports/charts/temp_chart.png')
+plt.close()
+result = {'type': 'plot', 'value': 'D:/Agents_Full_stack/Agents_backend/exports/charts/temp_chart.png'}
+        ```
+2025-09-19 15:48:13 [INFO] Executing Step 6: CodeExecution
+2025-09-19 15:48:15 [INFO] Executing Step 7: ResultValidation
+2025-09-19 15:48:15 [INFO] Answer: {'type': 'plot', 'value': 'D:/Agents_Full_stack/Agents_backend/exports/charts/temp_chart.png'}
+2025-09-19 15:48:15 [INFO] Executing Step 8: ResultParsing
+2025-09-19 15:52:33 [INFO] Question: Show the average salary grouped by experience level as a bar chart
+2025-09-19 15:52:35 [INFO] Running PandasAI with langchain_groq-chat LLM...
+2025-09-19 15:52:35 [INFO] Prompt ID: 1e848783-2316-4d9a-8134-1d2876c5533a
+2025-09-19 15:52:35 [INFO] Executing Pipeline: GenerateChatPipeline
+2025-09-19 15:52:35 [INFO] Executing Step 0: ValidatePipelineInput
+2025-09-19 15:52:35 [INFO] Executing Step 1: CacheLookup
+2025-09-19 15:52:35 [INFO] Using cached response
+2025-09-19 15:52:35 [INFO] Executing Step 2: PromptGeneration
+2025-09-19 15:52:35 [INFO] Executing Step 2: Skipping...
+2025-09-19 15:52:35 [INFO] Executing Step 3: CodeGenerator
+2025-09-19 15:52:35 [INFO] Executing Step 3: Skipping...
+2025-09-19 15:52:35 [INFO] Executing Step 4: CachePopulation
+2025-09-19 15:52:35 [INFO] Executing Step 4: Skipping...
+2025-09-19 15:52:35 [INFO] Executing Step 5: CodeCleaning
+2025-09-19 15:52:35 [INFO] Saving charts to D:\Agents_Full_stack\Agents_backend\exports\charts\temp_chart.png
+2025-09-19 15:52:36 [INFO] 
+Code running:
+```
+df = dfs[0]
+average_salary = df.groupby('experience_level')['salary_usd'].mean().reset_index()
+plt.figure(figsize=(10, 6))
+plt.bar(average_salary['experience_level'], average_salary['salary_usd'], color='skyblue')
+plt.xlabel('Experience Level')
+plt.ylabel('Average Salary (USD)')
+plt.title('Average Salary by Experience Level')
+plt.tight_layout()
+plt.savefig('D:/Agents_Full_stack/Agents_backend/exports/charts/temp_chart.png')
+plt.close()
+result = {'type': 'plot', 'value': 'D:/Agents_Full_stack/Agents_backend/exports/charts/temp_chart.png'}
+        ```
+2025-09-19 15:52:36 [INFO] Executing Step 6: CodeExecution
+2025-09-19 15:52:37 [INFO] Executing Step 7: ResultValidation
+2025-09-19 15:52:37 [INFO] Answer: {'type': 'plot', 'value': 'D:/Agents_Full_stack/Agents_backend/exports/charts/temp_chart.png'}
+2025-09-19 15:52:37 [INFO] Executing Step 8: ResultParsing
+2025-09-19 15:55:16 [INFO] Question: Show the average salary grouped by experience level as a bar chart
+2025-09-19 15:55:18 [INFO] Running PandasAI with langchain_groq-chat LLM...
+2025-09-19 15:55:18 [INFO] Prompt ID: 4d197a4a-3fc2-405f-97a5-2bb8b769ee90
+2025-09-19 15:55:18 [INFO] Executing Pipeline: GenerateChatPipeline
+2025-09-19 15:55:19 [INFO] Executing Step 0: ValidatePipelineInput
+2025-09-19 15:55:19 [INFO] Executing Step 1: CacheLookup
+2025-09-19 15:55:19 [INFO] Using cached response
+2025-09-19 15:55:19 [INFO] Executing Step 2: PromptGeneration
+2025-09-19 15:55:19 [INFO] Executing Step 2: Skipping...
+2025-09-19 15:55:19 [INFO] Executing Step 3: CodeGenerator
+2025-09-19 15:55:19 [INFO] Executing Step 3: Skipping...
+2025-09-19 15:55:19 [INFO] Executing Step 4: CachePopulation
+2025-09-19 15:55:19 [INFO] Executing Step 4: Skipping...
+2025-09-19 15:55:19 [INFO] Executing Step 5: CodeCleaning
+2025-09-19 15:55:19 [INFO] Saving charts to D:\Agents_Full_stack\Agents_backend\exports\charts\temp_chart.png
+2025-09-19 15:55:19 [INFO] 
+Code running:
+```
+df = dfs[0]
+average_salary = df.groupby('experience_level')['salary_usd'].mean().reset_index()
+plt.figure(figsize=(10, 6))
+plt.bar(average_salary['experience_level'], average_salary['salary_usd'], color='skyblue')
+plt.xlabel('Experience Level')
+plt.ylabel('Average Salary (USD)')
+plt.title('Average Salary by Experience Level')
+plt.tight_layout()
+plt.savefig('D:/Agents_Full_stack/Agents_backend/exports/charts/temp_chart.png')
+plt.close()
+result = {'type': 'plot', 'value': 'D:/Agents_Full_stack/Agents_backend/exports/charts/temp_chart.png'}
+        ```
+2025-09-19 15:55:19 [INFO] Executing Step 6: CodeExecution
+2025-09-19 15:55:20 [INFO] Executing Step 7: ResultValidation
+2025-09-19 15:55:20 [INFO] Answer: {'type': 'plot', 'value': 'D:/Agents_Full_stack/Agents_backend/exports/charts/temp_chart.png'}
+2025-09-19 15:55:20 [INFO] Executing Step 8: ResultParsing
+2025-09-19 16:02:08 [INFO] Question: Show the average salary grouped by experience level as a bar chart
+2025-09-19 16:02:10 [INFO] Running PandasAI with langchain_groq-chat LLM...
+2025-09-19 16:02:10 [INFO] Prompt ID: 2ed11447-608b-4535-9201-7bc11b536142
+2025-09-19 16:02:10 [INFO] Executing Pipeline: GenerateChatPipeline
+2025-09-19 16:02:10 [INFO] Executing Step 0: ValidatePipelineInput
+2025-09-19 16:02:10 [INFO] Executing Step 1: CacheLookup
+2025-09-19 16:02:10 [INFO] Using cached response
+2025-09-19 16:02:10 [INFO] Executing Step 2: PromptGeneration
+2025-09-19 16:02:10 [INFO] Executing Step 2: Skipping...
+2025-09-19 16:02:10 [INFO] Executing Step 3: CodeGenerator
+2025-09-19 16:02:10 [INFO] Executing Step 3: Skipping...
+2025-09-19 16:02:10 [INFO] Executing Step 4: CachePopulation
+2025-09-19 16:02:10 [INFO] Executing Step 4: Skipping...
+2025-09-19 16:02:10 [INFO] Executing Step 5: CodeCleaning
+2025-09-19 16:02:10 [INFO] Saving charts to D:\Agents_Full_stack\Agents_backend\exports\charts\temp_chart.png
+2025-09-19 16:02:10 [INFO] 
+Code running:
+```
+df = dfs[0]
+average_salary = df.groupby('experience_level')['salary_usd'].mean().reset_index()
+plt.figure(figsize=(10, 6))
+plt.bar(average_salary['experience_level'], average_salary['salary_usd'], color='skyblue')
+plt.xlabel('Experience Level')
+plt.ylabel('Average Salary (USD)')
+plt.title('Average Salary by Experience Level')
+plt.tight_layout()
+plt.savefig('D:/Agents_Full_stack/Agents_backend/exports/charts/temp_chart.png')
+plt.close()
+result = {'type': 'plot', 'value': 'D:/Agents_Full_stack/Agents_backend/exports/charts/temp_chart.png'}
+        ```
+2025-09-19 16:02:10 [INFO] Executing Step 6: CodeExecution
+2025-09-19 16:02:12 [INFO] Executing Step 7: ResultValidation
+2025-09-19 16:02:12 [INFO] Answer: {'type': 'plot', 'value': 'D:/Agents_Full_stack/Agents_backend/exports/charts/temp_chart.png'}
+2025-09-19 16:02:12 [INFO] Executing Step 8: ResultParsing
+2025-09-19 16:06:35 [INFO] Question: Show the average salary grouped by experience level as a bar chart
+2025-09-19 16:06:35 [INFO] Running PandasAI with langchain_groq-chat LLM...
+2025-09-19 16:06:35 [INFO] Prompt ID: 85e2417a-8455-40e1-b97c-35257954c1df
+2025-09-19 16:06:35 [INFO] Executing Pipeline: GenerateChatPipeline
+2025-09-19 16:06:35 [INFO] Executing Step 0: ValidatePipelineInput
+2025-09-19 16:06:35 [INFO] Executing Step 1: CacheLookup
+2025-09-19 16:06:35 [INFO] Using cached response
+2025-09-19 16:06:35 [INFO] Executing Step 2: PromptGeneration
+2025-09-19 16:06:35 [INFO] Executing Step 2: Skipping...
+2025-09-19 16:06:35 [INFO] Executing Step 3: CodeGenerator
+2025-09-19 16:06:35 [INFO] Executing Step 3: Skipping...
+2025-09-19 16:06:35 [INFO] Executing Step 4: CachePopulation
+2025-09-19 16:06:36 [INFO] Executing Step 4: Skipping...
+2025-09-19 16:06:36 [INFO] Executing Step 5: CodeCleaning
+2025-09-19 16:06:36 [INFO] Saving charts to D:\Agents_Full_stack\Agents_backend\exports\charts\temp_chart.png
+2025-09-19 16:06:36 [INFO] 
+Code running:
+```
+df = dfs[0]
+average_salary = df.groupby('experience_level')['salary_usd'].mean().reset_index()
+plt.figure(figsize=(10, 6))
+plt.bar(average_salary['experience_level'], average_salary['salary_usd'], color='skyblue')
+plt.xlabel('Experience Level')
+plt.ylabel('Average Salary (USD)')
+plt.title('Average Salary by Experience Level')
+plt.tight_layout()
+plt.savefig('D:/Agents_Full_stack/Agents_backend/exports/charts/temp_chart.png')
+plt.close()
+result = {'type': 'plot', 'value': 'D:/Agents_Full_stack/Agents_backend/exports/charts/temp_chart.png'}
+        ```
+2025-09-19 16:06:36 [INFO] Executing Step 6: CodeExecution
+2025-09-19 16:06:36 [INFO] Executing Step 7: ResultValidation
+2025-09-19 16:06:36 [INFO] Answer: {'type': 'plot', 'value': 'D:/Agents_Full_stack/Agents_backend/exports/charts/temp_chart.png'}
+2025-09-19 16:06:36 [INFO] Executing Step 8: ResultParsing
+2025-09-19 16:10:30 [INFO] Question: Show the average salary grouped by experience level as a bar chart
+2025-09-19 16:10:30 [INFO] Running PandasAI with langchain_groq-chat LLM...
+2025-09-19 16:10:30 [INFO] Prompt ID: 0a7a2b93-8291-4a3a-b635-731ca9b19e65
+2025-09-19 16:10:30 [INFO] Executing Pipeline: GenerateChatPipeline
+2025-09-19 16:10:31 [INFO] Executing Step 0: ValidatePipelineInput
+2025-09-19 16:10:31 [INFO] Executing Step 1: CacheLookup
+2025-09-19 16:10:31 [INFO] Using cached response
+2025-09-19 16:10:31 [INFO] Executing Step 2: PromptGeneration
+2025-09-19 16:10:31 [INFO] Executing Step 2: Skipping...
+2025-09-19 16:10:31 [INFO] Executing Step 3: CodeGenerator
+2025-09-19 16:10:31 [INFO] Executing Step 3: Skipping...
+2025-09-19 16:10:31 [INFO] Executing Step 4: CachePopulation
+2025-09-19 16:10:31 [INFO] Executing Step 4: Skipping...
+2025-09-19 16:10:31 [INFO] Executing Step 5: CodeCleaning
+2025-09-19 16:10:31 [INFO] Saving charts to D:\Agents_Full_stack\Agents_backend\exports\charts\temp_chart.png
+2025-09-19 16:10:31 [INFO] 
+Code running:
+```
+df = dfs[0]
+average_salary = df.groupby('experience_level')['salary_usd'].mean().reset_index()
+plt.figure(figsize=(10, 6))
+plt.bar(average_salary['experience_level'], average_salary['salary_usd'], color='skyblue')
+plt.xlabel('Experience Level')
+plt.ylabel('Average Salary (USD)')
+plt.title('Average Salary by Experience Level')
+plt.tight_layout()
+plt.savefig('D:/Agents_Full_stack/Agents_backend/exports/charts/temp_chart.png')
+plt.close()
+result = {'type': 'plot', 'value': 'D:/Agents_Full_stack/Agents_backend/exports/charts/temp_chart.png'}
+        ```
+2025-09-19 16:10:31 [INFO] Executing Step 6: CodeExecution
+2025-09-19 16:10:32 [INFO] Executing Step 7: ResultValidation
+2025-09-19 16:10:32 [INFO] Answer: {'type': 'plot', 'value': 'D:/Agents_Full_stack/Agents_backend/exports/charts/temp_chart.png'}
+2025-09-19 16:10:32 [INFO] Executing Step 8: ResultParsing
+2025-09-19 16:20:54 [INFO] Question: find the job requirements: job title must be Data Engineer, Remote job
+2025-09-19 16:20:54 [INFO] Running PandasAI with langchain_groq-chat LLM...
+2025-09-19 16:20:54 [INFO] Prompt ID: 5ebbd676-4723-4414-8a3f-6d40916d6bbd
+2025-09-19 16:20:55 [INFO] Executing Pipeline: GenerateChatPipeline
+2025-09-19 16:20:55 [INFO] Executing Step 0: ValidatePipelineInput
+2025-09-19 16:20:55 [INFO] Executing Step 1: CacheLookup
+2025-09-19 16:20:55 [INFO] Using cached response
+2025-09-19 16:20:55 [INFO] Executing Step 2: PromptGeneration
+2025-09-19 16:20:55 [INFO] Executing Step 2: Skipping...
+2025-09-19 16:20:55 [INFO] Executing Step 3: CodeGenerator
+2025-09-19 16:20:55 [INFO] Executing Step 3: Skipping...
+2025-09-19 16:20:55 [INFO] Executing Step 4: CachePopulation
+2025-09-19 16:20:55 [INFO] Executing Step 4: Skipping...
+2025-09-19 16:20:55 [INFO] Executing Step 5: CodeCleaning
+2025-09-19 16:20:55 [INFO] 
+Code running:
+```
+df = dfs[0]
+filtered_df = df[(df['job_title'] == 'Data Engineer') & (df['remote_ratio'] == 100)]
+result = {'type': 'dataframe', 'value': filtered_df}
+        ```
+2025-09-19 16:20:55 [INFO] Executing Step 6: CodeExecution
+2025-09-19 16:20:55 [INFO] Executing Step 7: ResultValidation
+2025-09-19 16:20:55 [INFO] Answer: {'type': 'dataframe', 'value':         job_id      job_title  salary_usd  ... job_description_length benefits_score                company_name
+39     AI00040  Data Engineer      166080  ...                    831            5.1           DeepTech Ventures
+74     AI00075  Data Engineer       51920  ...                   1778            7.9  Digital Transformation LLC
+75     AI00076  Data Engineer       56427  ...                   1366            5.2           DeepTech Ventures
+104    AI00105  Data Engineer      213287  ...                   1102            6.3          Cloud AI Solutions
+169    AI00170  Data Engineer      145355  ...                    685            9.6           DeepTech Ventures
+...        ...            ...         ...  ...                    ...            ...                         ...
+14728  AI14729  Data Engineer      100644  ...                   2316           10.0          Neural Networks Co
+14767  AI14768  Data Engineer       77365  ...                   1022            5.9          Predictive Systems
+14798  AI14799  Data Engineer       66322  ...                    683            8.2           DeepTech Ventures
+14856  AI14857  Data Engineer      118900  ...                   1721            5.6             Smart Analytics
+14886  AI14887  Data Engineer       67150  ...                    755            9.9                TechCorp Inc
+
+[260 rows x 19 columns]}
+2025-09-19 16:20:55 [INFO] Executing Step 8: ResultParsing
+2025-09-19 16:24:24 [INFO] Question: find the job requirements: job title must be Data Engineer, Remote job
+2025-09-19 16:24:24 [INFO] Running PandasAI with langchain_groq-chat LLM...
+2025-09-19 16:24:24 [INFO] Prompt ID: dd14d0b4-22bd-4b90-b54e-a2b117b87abf
+2025-09-19 16:24:24 [INFO] Executing Pipeline: GenerateChatPipeline
+2025-09-19 16:24:25 [INFO] Executing Step 0: ValidatePipelineInput
+2025-09-19 16:24:25 [INFO] Executing Step 1: CacheLookup
+2025-09-19 16:24:25 [INFO] Using cached response
+2025-09-19 16:24:25 [INFO] Executing Step 2: PromptGeneration
+2025-09-19 16:24:25 [INFO] Executing Step 2: Skipping...
+2025-09-19 16:24:25 [INFO] Executing Step 3: CodeGenerator
+2025-09-19 16:24:25 [INFO] Executing Step 3: Skipping...
+2025-09-19 16:24:25 [INFO] Executing Step 4: CachePopulation
+2025-09-19 16:24:25 [INFO] Executing Step 4: Skipping...
+2025-09-19 16:24:25 [INFO] Executing Step 5: CodeCleaning
+2025-09-19 16:24:25 [INFO] 
+Code running:
+```
+df = dfs[0]
+filtered_df = df[(df['job_title'] == 'Data Engineer') & (df['remote_ratio'] == 100)]
+result = {'type': 'dataframe', 'value': filtered_df}
+        ```
+2025-09-19 16:24:25 [INFO] Executing Step 6: CodeExecution
+2025-09-19 16:24:25 [INFO] Executing Step 7: ResultValidation
+2025-09-19 16:24:25 [INFO] Answer: {'type': 'dataframe', 'value':         job_id      job_title  salary_usd  ... job_description_length benefits_score                company_name
+39     AI00040  Data Engineer      166080  ...                    831            5.1           DeepTech Ventures
+74     AI00075  Data Engineer       51920  ...                   1778            7.9  Digital Transformation LLC
+75     AI00076  Data Engineer       56427  ...                   1366            5.2           DeepTech Ventures
+104    AI00105  Data Engineer      213287  ...                   1102            6.3          Cloud AI Solutions
+169    AI00170  Data Engineer      145355  ...                    685            9.6           DeepTech Ventures
+...        ...            ...         ...  ...                    ...            ...                         ...
+14728  AI14729  Data Engineer      100644  ...                   2316           10.0          Neural Networks Co
+14767  AI14768  Data Engineer       77365  ...                   1022            5.9          Predictive Systems
+14798  AI14799  Data Engineer       66322  ...                    683            8.2           DeepTech Ventures
+14856  AI14857  Data Engineer      118900  ...                   1721            5.6             Smart Analytics
+14886  AI14887  Data Engineer       67150  ...                    755            9.9                TechCorp Inc
+
+[260 rows x 19 columns]}
+2025-09-19 16:24:25 [INFO] Executing Step 8: ResultParsing
+2025-09-19 16:24:52 [INFO] Question: Show the missing values of data, in a table form
+2025-09-19 16:24:52 [INFO] Running PandasAI with langchain_groq-chat LLM...
+2025-09-19 16:24:52 [INFO] Prompt ID: d7cdfc95-f9b8-4a6e-a351-e8fe040b8ea6
+2025-09-19 16:24:52 [INFO] Executing Pipeline: GenerateChatPipeline
+2025-09-19 16:24:52 [INFO] Executing Step 0: ValidatePipelineInput
+2025-09-19 16:24:52 [INFO] Executing Step 1: CacheLookup
+2025-09-19 16:24:52 [INFO] Executing Step 2: PromptGeneration
+2025-09-19 16:24:52 [INFO] Using prompt: <dataframe>
+dfs[0]:15000x19
+job_id,job_title,salary_usd,salary_currency,experience_level,employment_type,company_location,company_size,employee_residence,remote_ratio,required_skills,education_required,years_experience,industry,posting_date,application_deadline,job_description_length,benefits_score,company_name
+AI05356,ML Ops Engineer,68834,EUR,MI,FL,Denmark,M,Sweden,0,"Java, NLP, Linux, Deep Learning, PyTorch",PhD,19,Energy,2024-12-14,2024-11-18,2289,6.4,Machine Intelligence Group
+AI04282,AI Software Engineer,243337,GBP,EX,FT,Singapore,S,Denmark,50,"R, Java, Tableau, Data Visualization",Bachelor,1,Retail,2025-03-07,2025-06-02,1902,7.5,Future Systems
+AI01442,AI Consultant,115772,USD,EN,PT,Austria,L,Norway,100,"Hadoop, Scala, Spark",Master,9,Manufacturing,2024-07-06,2025-06-26,1911,9.5,Autonomous Tech
+</dataframe>
+
+
+
+
+Update this initial code:
+```python
+# TODO: import the required dependencies
+import pandas as pd
+
+# Write code here
+
+# Declare result var: 
+type (possible values "string", "number", "dataframe", "plot"). Examples: { "type": "string", "value": f"The highest salary is {highest_salary}." } or { "type": "number", "value": 125 } or { "type": "dataframe", "value": pd.DataFrame({...}) } or { "type": "plot", "value": "temp_chart.png" }
+
+```
+
+
+
+### QUERY
+ Show the missing values of data, in a table form
+
+Variable `dfs: list[pd.DataFrame]` is already declared.
+
+At the end, declare "result" variable as a dictionary of type and value.
+
+If you are asked to plot a chart, use "matplotlib" for charts, save as png.
+
+
+Generate python code and return full updated code:
+2025-09-19 16:24:52 [INFO] Executing Step 3: CodeGenerator
+2025-09-19 16:24:56 [INFO] HTTP Request: POST https://api.groq.com/openai/v1/chat/completions "HTTP/1.1 401 Unauthorized"
+2025-09-19 16:24:56 [ERROR] Pipeline failed on step 3: Error code: 401 - {'error': {'message': 'Invalid API Key', 'type': 'invalid_request_error', 'code': 'invalid_api_key'}}
+2025-09-19 16:25:16 [INFO] Question: Show the missing values of data, in a table form
+2025-09-19 16:25:16 [INFO] Running PandasAI with langchain_groq-chat LLM...
+2025-09-19 16:25:16 [INFO] Prompt ID: cc3ba3ab-d8c9-4974-837d-ad3739399699
+2025-09-19 16:25:16 [INFO] Executing Pipeline: GenerateChatPipeline
+2025-09-19 16:25:17 [INFO] Executing Step 0: ValidatePipelineInput
+2025-09-19 16:25:17 [INFO] Executing Step 1: CacheLookup
+2025-09-19 16:25:17 [INFO] Executing Step 2: PromptGeneration
+2025-09-19 16:25:17 [INFO] Using prompt: <dataframe>
+dfs[0]:15000x19
+job_id,job_title,salary_usd,salary_currency,experience_level,employment_type,company_location,company_size,employee_residence,remote_ratio,required_skills,education_required,years_experience,industry,posting_date,application_deadline,job_description_length,benefits_score,company_name
+AI00109,Deep Learning Engineer,47399,USD,EX,PT,Canada,M,Sweden,50,"SQL, Mathematics, Git, Python",Bachelor,15,Real Estate,2024-08-23,2025-05-04,1939,7.6,Predictive Systems
+AI11529,Computer Vision Engineer,62570,EUR,MI,FL,Austria,S,France,100,"R, Spark, Statistics, Hadoop, NLP",PhD,8,Retail,2025-04-10,2025-02-08,2416,6.7,Future Systems
+AI05492,Head of AI,178112,GBP,EN,FT,South Korea,L,Singapore,0,"Linux, Data Visualization, Python, TensorFlow",Associate,10,Manufacturing,2024-05-10,2025-05-23,1231,7.9,Machine Intelligence Group
+</dataframe>
+
+
+
+
+Update this initial code:
+```python
+# TODO: import the required dependencies
+import pandas as pd
+
+# Write code here
+
+# Declare result var: 
+type (possible values "string", "number", "dataframe", "plot"). Examples: { "type": "string", "value": f"The highest salary is {highest_salary}." } or { "type": "number", "value": 125 } or { "type": "dataframe", "value": pd.DataFrame({...}) } or { "type": "plot", "value": "temp_chart.png" }
+
+```
+
+
+
+### QUERY
+ Show the missing values of data, in a table form
+
+Variable `dfs: list[pd.DataFrame]` is already declared.
+
+At the end, declare "result" variable as a dictionary of type and value.
+
+If you are asked to plot a chart, use "matplotlib" for charts, save as png.
+
+
+Generate python code and return full updated code:
+2025-09-19 16:25:17 [INFO] Executing Step 3: CodeGenerator
+2025-09-19 16:25:18 [INFO] HTTP Request: POST https://api.groq.com/openai/v1/chat/completions "HTTP/1.1 401 Unauthorized"
+2025-09-19 16:25:18 [ERROR] Pipeline failed on step 3: Error code: 401 - {'error': {'message': 'Invalid API Key', 'type': 'invalid_request_error', 'code': 'invalid_api_key'}}
+2025-09-19 16:25:33 [INFO] Question: find the job requirements: job title must be Data Engineer, Remote job for years_experience is 0
+2025-09-19 16:25:34 [INFO] Running PandasAI with langchain_groq-chat LLM...
+2025-09-19 16:25:34 [INFO] Prompt ID: d0bc2f14-c341-403c-a815-77b15a17546c
+2025-09-19 16:25:34 [INFO] Executing Pipeline: GenerateChatPipeline
+2025-09-19 16:25:34 [INFO] Executing Step 0: ValidatePipelineInput
+2025-09-19 16:25:34 [INFO] Executing Step 1: CacheLookup
+2025-09-19 16:25:34 [INFO] Using cached response
+2025-09-19 16:25:34 [INFO] Executing Step 2: PromptGeneration
+2025-09-19 16:25:34 [INFO] Executing Step 2: Skipping...
+2025-09-19 16:25:34 [INFO] Executing Step 3: CodeGenerator
+2025-09-19 16:25:34 [INFO] Executing Step 3: Skipping...
+2025-09-19 16:25:34 [INFO] Executing Step 4: CachePopulation
+2025-09-19 16:25:34 [INFO] Executing Step 4: Skipping...
+2025-09-19 16:25:34 [INFO] Executing Step 5: CodeCleaning
+2025-09-19 16:25:34 [INFO] 
+Code running:
+```
+filtered_df = dfs[0][(dfs[0]['job_title'] == 'Data Engineer') & (dfs[0]['remote_ratio'] == 100) & (dfs[0]['years_experience'] == 0)]
+result = {'type': 'dataframe', 'value': filtered_df}
+        ```
+2025-09-19 16:25:34 [INFO] Executing Step 6: CodeExecution
+2025-09-19 16:25:34 [INFO] Executing Step 7: ResultValidation
+2025-09-19 16:25:34 [INFO] Answer: {'type': 'dataframe', 'value':         job_id      job_title  salary_usd  ... job_description_length benefits_score                company_name
+74     AI00075  Data Engineer       51920  ...                   1778            7.9  Digital Transformation LLC
+75     AI00076  Data Engineer       56427  ...                   1366            5.2           DeepTech Ventures
+1159   AI01160  Data Engineer       52448  ...                   1084            9.4              DataVision Ltd
+1296   AI01297  Data Engineer       49276  ...                   1187            7.0       Algorithmic Solutions
+1656   AI01657  Data Engineer       54678  ...                   2174            5.7                TechCorp Inc
+2500   AI02501  Data Engineer       40107  ...                    707            8.6          Neural Networks Co
+3050   AI03051  Data Engineer       81264  ...                   1641            7.9          Predictive Systems
+3123   AI03124  Data Engineer       74951  ...                   1221            5.0             Autonomous Tech
+3405   AI03406  Data Engineer       62047  ...                   1109            5.6                TechCorp Inc
+3695   AI03696  Data Engineer       87328  ...                   2109            7.3          Neural Networks Co
+4065   AI04066  Data Engineer       74226  ...                    842            5.7       Algorithmic Solutions
+4169   AI04170  Data Engineer       54304  ...                    791            9.2              AI Innovations
+4295   AI04296  Data Engineer       51745  ...                   1665            7.1              DataVision Ltd
+4764   AI04765  Data Engineer       42201  ...                   1829            8.0  Machine Intelligence Group
+4875   AI04876  Data Engineer       72279  ...                   1568            5.5          Neural Networks Co
+5586   AI05587  Data Engineer       36579  ...                   1839            6.7             Smart Analytics
+6594   AI06595  Data Engineer       37602  ...                   1319           10.0          Cloud AI Solutions
+6931   AI06932  Data Engineer       76845  ...                   1166            7.5  Machine Intelligence Group
+8289   AI08290  Data Engineer       64601  ...                    928            9.0       Quantum Computing Inc
+10116  AI10117  Data Engineer       71386  ...                   1610            5.0              DataVision Ltd
+11005  AI11006  Data Engineer       95671  ...                   2390            8.4             Autonomous Tech
+12819  AI12820  Data Engineer       42305  ...                   2143            5.7           DeepTech Ventures
+13048  AI13049  Data Engineer       92828  ...                   2105            8.6          Predictive Systems
+13547  AI13548  Data Engineer       69977  ...                   1106            5.9       Quantum Computing Inc
+14644  AI14645  Data Engineer      106078  ...                   1469            8.3              DataVision Ltd
+
+[25 rows x 19 columns]}
+2025-09-19 16:25:34 [INFO] Executing Step 8: ResultParsing
+2025-09-19 16:25:54 [INFO] Question: Show average salary grouped by experience level as a bar chart
+2025-09-19 16:25:54 [INFO] Running PandasAI with langchain_groq-chat LLM...
+2025-09-19 16:25:54 [INFO] Prompt ID: fd245f87-c126-483c-8f23-9ec400e1229e
+2025-09-19 16:25:54 [INFO] Executing Pipeline: GenerateChatPipeline
+2025-09-19 16:25:54 [INFO] Executing Step 0: ValidatePipelineInput
+2025-09-19 16:25:54 [INFO] Executing Step 1: CacheLookup
+2025-09-19 16:25:54 [INFO] Executing Step 2: PromptGeneration
+2025-09-19 16:25:54 [INFO] Using prompt: <dataframe>
+dfs[0]:15000x19
+job_id,job_title,salary_usd,salary_currency,experience_level,employment_type,company_location,company_size,employee_residence,remote_ratio,required_skills,education_required,years_experience,industry,posting_date,application_deadline,job_description_length,benefits_score,company_name
+AI04188,NLP Engineer,59529,EUR,EX,FT,Ireland,L,Netherlands,100,"Spark, AWS, Tableau, Scala",Associate,4,Education,2024-04-28,2024-10-23,1339,6.1,Cognitive Computing
+AI01400,Machine Learning Engineer,80476,USD,SE,FL,Singapore,M,Singapore,50,"PyTorch, Kubernetes, Statistics",Master,9,Real Estate,2024-12-20,2025-06-15,1474,7.6,DataVision Ltd
+AI13474,AI Product Manager,154290,GBP,EN,PT,India,S,Canada,0,"AWS, Git, R",PhD,8,Retail,2024-12-10,2024-04-07,1820,5.2,Digital Transformation LLC
+</dataframe>
+
+
+
+
+Update this initial code:
+```python
+# TODO: import the required dependencies
+import pandas as pd
+
+# Write code here
+
+# Declare result var: 
+type (possible values "string", "number", "dataframe", "plot"). Examples: { "type": "string", "value": f"The highest salary is {highest_salary}." } or { "type": "number", "value": 125 } or { "type": "dataframe", "value": pd.DataFrame({...}) } or { "type": "plot", "value": "temp_chart.png" }
+
+```
+
+
+
+### QUERY
+ Show average salary grouped by experience level as a bar chart
+
+Variable `dfs: list[pd.DataFrame]` is already declared.
+
+At the end, declare "result" variable as a dictionary of type and value.
+
+If you are asked to plot a chart, use "matplotlib" for charts, save as png.
+
+
+Generate python code and return full updated code:
+2025-09-19 16:25:54 [INFO] Executing Step 3: CodeGenerator
+2025-09-19 16:25:55 [INFO] HTTP Request: POST https://api.groq.com/openai/v1/chat/completions "HTTP/1.1 401 Unauthorized"
+2025-09-19 16:25:55 [ERROR] Pipeline failed on step 3: Error code: 401 - {'error': {'message': 'Invalid API Key', 'type': 'invalid_request_error', 'code': 'invalid_api_key'}}
+2025-09-19 16:29:05 [INFO] Question: Show average salary grouped by experience level as a bar chart
+2025-09-19 16:29:06 [INFO] Running PandasAI with langchain_groq-chat LLM...
+2025-09-19 16:29:06 [INFO] Prompt ID: b9200785-f815-4ef9-b7ff-63f367a4d548
+2025-09-19 16:29:06 [INFO] Executing Pipeline: GenerateChatPipeline
+2025-09-19 16:29:07 [INFO] Executing Step 0: ValidatePipelineInput
+2025-09-19 16:29:07 [INFO] Executing Step 1: CacheLookup
+2025-09-19 16:29:07 [INFO] Executing Step 2: PromptGeneration
+2025-09-19 16:29:07 [INFO] Using prompt: <dataframe>
+dfs[0]:15000x19
+job_id,job_title,salary_usd,salary_currency,experience_level,employment_type,company_location,company_size,employee_residence,remote_ratio,required_skills,education_required,years_experience,industry,posting_date,application_deadline,job_description_length,benefits_score,company_name
+AI06301,Computer Vision Engineer,71249,USD,MI,FL,United Kingdom,M,China,100,"Azure, Statistics, Scala",Master,7,Education,2025-04-08,2024-06-11,2370,5.5,Smart Analytics
+AI08726,Machine Learning Researcher,82649,GBP,SE,FT,Sweden,S,Ireland,50,"Scala, Spark, NLP, Java, SQL",Associate,1,Consulting,2025-02-21,2024-09-02,627,6.4,DeepTech Ventures
+AI06861,Principal Data Scientist,71281,EUR,EX,PT,Australia,L,Australia,0,"NLP, PyTorch, SQL, Computer Vision, Deep Learning",PhD,3,Gaming,2024-05-08,2025-05-06,1344,7.6,Predictive Systems
+</dataframe>
+
+
+
+
+Update this initial code:
+```python
+# TODO: import the required dependencies
+import pandas as pd
+
+# Write code here
+
+# Declare result var: 
+type (possible values "string", "number", "dataframe", "plot"). Examples: { "type": "string", "value": f"The highest salary is {highest_salary}." } or { "type": "number", "value": 125 } or { "type": "dataframe", "value": pd.DataFrame({...}) } or { "type": "plot", "value": "temp_chart.png" }
+
+```
+
+
+
+### QUERY
+ Show average salary grouped by experience level as a bar chart
+
+Variable `dfs: list[pd.DataFrame]` is already declared.
+
+At the end, declare "result" variable as a dictionary of type and value.
+
+If you are asked to plot a chart, use "matplotlib" for charts, save as png.
+
+
+Generate python code and return full updated code:
+2025-09-19 16:29:07 [INFO] Executing Step 3: CodeGenerator
+2025-09-19 16:29:15 [INFO] HTTP Request: POST https://api.groq.com/openai/v1/chat/completions "HTTP/1.1 200 OK"
+2025-09-19 16:29:15 [INFO] Prompt used:
+            
+<dataframe>
+dfs[0]:15000x19
+job_id,job_title,salary_usd,salary_currency,experience_level,employment_type,company_location,company_size,employee_residence,remote_ratio,required_skills,education_required,years_experience,industry,posting_date,application_deadline,job_description_length,benefits_score,company_name
+AI06301,Computer Vision Engineer,71249,USD,MI,FL,United Kingdom,M,China,100,"Azure, Statistics, Scala",Master,7,Education,2025-04-08,2024-06-11,2370,5.5,Smart Analytics
+AI08726,Machine Learning Researcher,82649,GBP,SE,FT,Sweden,S,Ireland,50,"Scala, Spark, NLP, Java, SQL",Associate,1,Consulting,2025-02-21,2024-09-02,627,6.4,DeepTech Ventures
+AI06861,Principal Data Scientist,71281,EUR,EX,PT,Australia,L,Australia,0,"NLP, PyTorch, SQL, Computer Vision, Deep Learning",PhD,3,Gaming,2024-05-08,2025-05-06,1344,7.6,Predictive Systems
+</dataframe>
+
+
+
+
+Update this initial code:
+```python
+# TODO: import the required dependencies
+import pandas as pd
+
+# Write code here
+
+# Declare result var: 
+type (possible values "string", "number", "dataframe", "plot"). Examples: { "type": "string", "value": f"The highest salary is {highest_salary}." } or { "type": "number", "value": 125 } or { "type": "dataframe", "value": pd.DataFrame({...}) } or { "type": "plot", "value": "temp_chart.png" }
+
+```
+
+
+
+### QUERY
+ Show average salary grouped by experience level as a bar chart
+
+Variable `dfs: list[pd.DataFrame]` is already declared.
+
+At the end, declare "result" variable as a dictionary of type and value.
+
+If you are asked to plot a chart, use "matplotlib" for charts, save as png.
+
+
+Generate python code and return full updated code:
+            
+2025-09-19 16:29:16 [INFO] Code generated:
+            ```
+            # Import the required dependencies
+import pandas as pd
+import matplotlib.pyplot as plt
+
+# Process the data
+df = dfs[0].dropna(subset=['experience_level', 'salary_usd'])
+average_salary = df.groupby('experience_level')['salary_usd'].mean()
+
+# Create the bar chart
+plt.figure(figsize=(10, 6))
+average_salary.plot(kind='bar', color='skyblue')
+plt.title('Average Salary by Experience Level')
+plt.xlabel('Experience Level')
+plt.ylabel('Average Salary (USD)')
+plt.xticks(rotation=45)
+plt.tight_layout()
+
+# Save the plot as a PNG file
+plt.savefig('temp_chart.png')
+plt.close()
+
+# Declare the result
+result = {"type": "plot", "value": "temp_chart.png"}
+            ```
+            
+2025-09-19 16:29:16 [INFO] Executing Step 4: CachePopulation
+2025-09-19 16:29:16 [INFO] Executing Step 5: CodeCleaning
+2025-09-19 16:29:16 [INFO] Saving charts to D:\Agents_Full_stack\Agents_backend\exports\charts\temp_chart.png
+2025-09-19 16:29:16 [INFO] 
+Code running:
+```
+df = dfs[0].dropna(subset=['experience_level', 'salary_usd'])
+average_salary = df.groupby('experience_level')['salary_usd'].mean()
+plt.figure(figsize=(10, 6))
+average_salary.plot(kind='bar', color='skyblue')
+plt.title('Average Salary by Experience Level')
+plt.xlabel('Experience Level')
+plt.ylabel('Average Salary (USD)')
+plt.xticks(rotation=45)
+plt.tight_layout()
+plt.savefig('D:/Agents_Full_stack/Agents_backend/exports/charts/temp_chart.png')
+plt.close()
+result = {'type': 'plot', 'value': 'D:/Agents_Full_stack/Agents_backend/exports/charts/temp_chart.png'}
+        ```
+2025-09-19 16:29:16 [INFO] Executing Step 6: CodeExecution
+2025-09-19 16:29:17 [INFO] Executing Step 7: ResultValidation
+2025-09-19 16:29:17 [INFO] Answer: {'type': 'plot', 'value': 'D:/Agents_Full_stack/Agents_backend/exports/charts/temp_chart.png'}
+2025-09-19 16:29:17 [INFO] Executing Step 8: ResultParsing
