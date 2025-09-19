@@ -1,8 +1,0 @@
-fastapi
-uvicorn
-pandas
-matplotlib
-python-multipart
-requests
-pandasai
-langchain-groq

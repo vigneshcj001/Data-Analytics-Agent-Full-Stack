@@ -1,9 +1,0 @@
-fastapi
-uvicorn
-pandas
-matplotlib
-python-multipart
-requests
-pandasai
-langchain-groq
-pip install --upgrade pip setuptools wheel

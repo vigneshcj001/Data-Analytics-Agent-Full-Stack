@@ -1,9 +1,0 @@
-fastapi
-uvicorn
-pandas
-matplotlib
-pandasai
-python-multipart
-requests
-pandasai==0.7.7
-langchain-groq==0.1.2
